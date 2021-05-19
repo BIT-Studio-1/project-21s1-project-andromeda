@@ -11,8 +11,4 @@
     <None Remove="room.cd" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="room\" />
-  </ItemGroup>
-
 </Project>
