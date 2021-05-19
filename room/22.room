@@ -11,8 +11,8 @@ data
 news=1000
 floor=cold
 
-
 items
+; Insert any item names here
 item=chuck
 item=macguffin
 
