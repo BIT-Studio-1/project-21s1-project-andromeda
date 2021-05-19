@@ -1,20 +1,22 @@
-﻿; This is room 23
+﻿; This is room 33
 
 
 text
-You are standing in a delapidated medical bay.
-To your South is the stasis room.
-East and West have the most generic looking sliding doors you have ever laid your eyes on.
-North is outside the scope of the current map.
+It smells faintly of chocolate in this room.
+To the west you see that familiar generic looking sliding door.
+To the south you feel an ominous aura.
+It looks like the narrator ran out of ideas and had to keep typing something just to get a prototype working.
+conditional=As you enter the room you kick over a jar and you hear the jingling of keys.
+else=It looks like you have done everything in this room. Git!
 
 data
 ; Insert any variables and other data that is necessary here.
-news=0111
-floor=mossy
+news=0011
+floor=wet
 
 items
 ; Insert any item names here
-
+item=key
 
 
 
