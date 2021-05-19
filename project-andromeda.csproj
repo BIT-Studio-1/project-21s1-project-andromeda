@@ -6,4 +6,13 @@
     <RootNamespace>project_andromeda</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="NewFile1.txt" />
+    <None Remove="room.cd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="room\" />
+  </ItemGroup>
+
 </Project>

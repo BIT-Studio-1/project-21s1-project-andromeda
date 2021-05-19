@@ -47,11 +47,11 @@ namespace project_andromeda
 
             //Remembers your last location, if you go out of bounds uses 'ghost' to set your position to your last known actual coordinates.
             int[] ghost = new int[2];
-            //Sets ghost position to be same as player before player input
-            ghost[0] = player[0];
-            ghost[1] = player[1];
             do
-            {
+            { 
+                //Sets ghost position to be same as player before player input
+                ghost[0] = player[0];
+                ghost[1] = player[1];
                 Console.WriteLine($"Your position is x {player[0]}, y {player[1]}.");
                 Console.WriteLine("Choose a direction. N/E/S/W\n\n");
                 temp = Console.ReadLine();
@@ -76,6 +76,9 @@ namespace project_andromeda
                         case "W":
                             player[0]--;
                             break;
+                        case "x":
+                        case "X":
+                            break;
                         default:
                             input = 1;
                             Console.WriteLine("Invalid Input");
@@ -85,14 +88,14 @@ namespace project_andromeda
                 foreach (int value in player)
                 {
                     //Tests if the player has entered an input that puts them out of bounds, and resets their position to their previous known location
-                    if ((value < 0) || (value > xaxis[xaxis.Length]) || (value > yaxis[yaxis.Length]))
+                    if ((value < 0) || (value > xaxis[xaxis.Length-1]) || (value > yaxis[yaxis.Length-1]))
                     {
                         Console.WriteLine("Out of bounds.");
                         player[0] = ghost[0];
                         player[1] = ghost[1];
                     }
                 }
-            } while (temp = );
+            } while ((temp != "x")||(temp != "X"));
         }
     }
 }
