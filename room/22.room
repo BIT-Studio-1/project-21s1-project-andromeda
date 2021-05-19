@@ -6,18 +6,15 @@ You are standing next to the stasis module.
 In the corner there is a neglected pair of Chuck Tailors.
 The door to the North is open and there is a warm breeze coming from it.
 
-
-
-
-
-
 data
 ; Insert any variables and other data that is necessary here.
 news=1000
 floor=cold
 
-items
 
+items
+item=chuck
+item=macguffin
 
 
 
