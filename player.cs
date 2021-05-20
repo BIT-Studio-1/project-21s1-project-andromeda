@@ -15,12 +15,10 @@ namespace project_andromeda
         {
             ArrayList items = new ArrayList()
                 {
-                    "Chucky Tailors",
-                    "Creel",
-                    "Key",
-                    "Shoes"
+                    "Nothing at the moment, try picking up some items!"
                 };
 
+            Console.WriteLine();
 
             foreach (var val in items)
                 Console.WriteLine(val);
