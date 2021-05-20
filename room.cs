@@ -2,19 +2,33 @@
 
 namespace project_andromeda
 {
-    
+
+
     public class Room
     {
-        /* This method loads a room into the game from an <x><y>.room file
-         * 
-         * To see how the .room files are structured look in room/room.skeleton
-         * 
-         * 
-         * 
-         */
+        public static string[] currentRoom = new string[0];
+
+
+        // Check of player can move in given direction
+        public static int CanMove(string[] player)
+        {
+            int result = 0;
+
+
+            return result;
+        }
+
+
 
         public static void Read(int[] player)
         {
+            /* This method loads a room into the game from an <x><y>.room file
+             * 
+             * To see how the .room files are structured look in room/room.skeleton
+             * 
+             * 
+             * 
+             */
             int roomx, roomy;
 
             roomx = player[0];
@@ -22,36 +36,37 @@ namespace project_andromeda
 
             string file = @"..\..\..\room\" + roomx + roomy + ".room";
 
-            Console.WriteLine($"Will now attempt to read file {file}");
+
+            // Check amount of lines in room text file and resize array
+            int lineCount = 0;
+            foreach (string line in System.IO.File.ReadAllLines(file))
+            {
+                // Use a tab to indent each line of the file.
+                Console.WriteLine("\t" + line);
+                lineCount++;
+            }
+
+
+
+            // Read room into array
+            Array.Resize(ref currentRoom, lineCount);
+            currentRoom = System.IO.File.ReadAllLines(file);
+
+
             Console.ReadLine();
 
+        }
 
-            // Definitely not stolen from the Microsoft example docs
-
-            // Example #2
-            // Read each line of the file into a string array. Each element
-            // of the array is one line of the file.
-            //try
-            //{
-                string[] lines = System.IO.File.ReadAllLines(file);
-            
-
-                // Display the file contents by using a foreach loop.
-                System.Console.WriteLine("Contents of 22.room = ");
-                foreach (string line in lines)
+        public static void ListItemsInRoom()
+        {
+            foreach (string line in currentRoom)
+            {
+                if (line.Contains("item="))
                 {
-                    // Use a tab to indent each line of the file.
-                    Console.WriteLine("\t" + line);
-                }
 
-                Console.ReadLine();
-            
-                //}
-                //catch (System.IO.DirectoryNotFoundException)
-                //{
-                //    Console.WriteLine("Houston we have a problem!" +
-                //        "Unable to read file.");
-                //}
+                Console.WriteLine(line.IndexOf('='));
+                }
+            }
         }
     }
 }
