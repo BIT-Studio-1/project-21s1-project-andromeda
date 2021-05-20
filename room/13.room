@@ -1,2 +1,20 @@
 ; This is room 13
 
+
+
+Text
+this room is very big and contains many tresures
+2 of them are traps and you will die upon opening them
+choose carefully which to open
+
+
+data
+
+items
+
+items=treasure1 safe
+items=treasure2 trap
+items=treasure3 trap
+items=treasure4 safe
+items=trassure5 safe
+// or you could make a random generater that auto assigns treausres wether they are safe of traps
