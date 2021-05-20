@@ -1,10 +1,21 @@
 ﻿using System;
+using System.Threading;
 
 namespace project_andromeda
 {
     class andromeda
     {
-        static void Main()
+        static void NewGame()
+        {
+            //Create a new save file with default player variables and then start the game
+            Game();
+        }
+        static void Load()
+        {
+            //Load player variables from a save file then start the game
+            Game();
+        }
+        static void Game()
         {
             string temp;
             int input;
@@ -95,7 +106,36 @@ namespace project_andromeda
                         player[1] = ghost[1];
                     }
                 }
-            } while ((temp != "x")||(temp != "X"));
+            } while ((temp != "x")&&(temp != "X"));
+        }
+        static void Main()
+        {
+            
+            string temp;
+            int start=1;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("ANDROMEDA\nMain Menu\n\n1. New Game\n2. Load Game\n3. Exit");
+                temp = Console.ReadLine();
+                switch (temp)
+                {
+                    case "1":
+                        NewGame();
+                        break;
+                    case "2":
+                        Load();
+                        break;
+                    case "3":
+                        start = 0;
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid Input");
+                        Thread.Sleep(1500);
+                        break;
+                }
+            } while (start == 1);
         }
     }
 }
