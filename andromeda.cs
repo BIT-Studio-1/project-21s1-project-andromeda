@@ -54,9 +54,9 @@ namespace project_andromeda
                 ghost[1] = player[1];
                 Console.WriteLine($"Your position is x {player[0]}, y {player[1]}.");
                 Console.WriteLine("Choose a direction. N/E/S/W\n\n");
-                temp = Console.ReadLine();
                 do
                 {
+                    temp = Console.ReadLine();
                     input = 0;
                     switch (temp)
                     {
