@@ -6,45 +6,46 @@ using System.Threading.Tasks;
 
 namespace project_andromeda
 {
-    class Player
+    public class Player
     {
         public static void die()
         {
-            Console.WriteLine("You died.");
+            Console.WriteLine("You died."); //displays game over text
             Console.ReadLine();
-            Environment.Exit(0);
+            Environment.Exit(0); //exits application
         }
-        public static void inventory (){ }
-
-        class Item
+        public static void inventory (){ Console.WriteLine("This is the inventory"); }
+        
+        public class Item
         {
 
-
-            public string name;
+            
+            public string name; 
             private bool useable;
             private bool needsItem;
             private string description;
 
-            public Item(string _name, bool canUse, string _description)
+            public Item(string _name, bool canUse, string _description) //item name, is this item usable? yes or no, item description
             {
-                name = _name;
-                useable = canUse;
-                description = _description;
+                name = _name; //name string 
+                useable = canUse; //is the item usable?
+                description = _description; //description of item
             }
 
-            public string Name
+            public string Name 
             {
-                get { return name; }
+                get { return name; } //return (display) item name
+                set { name = value; }
             }
 
             public bool Useable
             {
-                get { return useable; }
+                get { return useable; } //return (display) usable (True or False)
             }
 
             public string Description
             {
-                get { return description; }
+                get { return description; } //return (display) item description
             }
         }
     }
