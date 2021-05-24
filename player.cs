@@ -40,12 +40,14 @@ namespace project_andromeda
 
             public bool Useable
             {
-                get { return useable; } //return (display) usable (True or False)
+                get { return Useable; } //return (display) usable (True or False)
+                set { Useable = value; }
             }
 
             public string Description
             {
-                get { return description; } //return (display) item description
+                get { return Description; } //return (display) item description
+                set { Description = value; }
             }
         }
     }
