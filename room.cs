@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace project_andromeda
 {
@@ -6,6 +7,7 @@ namespace project_andromeda
 
     public class Room
     {
+        public static char delimiter = '=';
         public static string[] currentRoom = new string[0];
 
 
@@ -53,18 +55,38 @@ namespace project_andromeda
 
         }
 
-        public static void ListItemsInRoom()
+        // This method just grabs the text portion of the room file and prints it
+        public static void LookRoom()
         {
-            //andromeda.ReadData(item);
+            List<string> roomText = new List<string>();
+            bool found = false;
+
             foreach (string line in currentRoom)
             {
-                // Once a line with the item= key has been found, extract the data without the key
-                if (line.Contains("item="))
-                {
-                    int delimiter = line.IndexOf('=');
-                    Console.WriteLine(line.Substring(delimiter + 1));
-                }
+                if (line.Contains("#")) found = false;
+                if (found) roomText.Add(line);
+                if (line.Contains("text=")) found = true;
             }
+
+            foreach (string line in roomText)
+            {
+                Console.WriteLine(line);
+            }
+            
+            Console.ReadLine();
+        }
+
+
+        // This lists the items in the current room. Used for @DEBUG
+        public static void ListItemsInRoom()
+        {
+            List<string> items = andromeda.GetAllData(currentRoom, "item");
+
+            foreach (string item in items)
+            {
+                Console.WriteLine(item);
+            }
+
         }
     }
 }
