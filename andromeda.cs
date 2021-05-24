@@ -67,6 +67,8 @@ namespace project_andromeda
             do
             {
                 Console.Clear();
+                Room.Read(player);
+
                 
                 //Sets ghost position to be same as player before player input
                 ghost[0] = player[0];
