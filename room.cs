@@ -9,10 +9,11 @@ namespace project_andromeda
         public static string[] currentRoom = new string[0];
 
 
-        // Check of player can move in given direction
-        public static int CanMove(string[] player)
+        // Check if player can move in given direction
+        public static int CanMove(string[] player, int news)
         {
             int result = 0;
+
 
 
             return result;
@@ -41,8 +42,6 @@ namespace project_andromeda
             int lineCount = 0;
             foreach (string line in System.IO.File.ReadAllLines(file))
             {
-                // Use a tab to indent each line of the file.
-                Console.WriteLine("\t" + line);
                 lineCount++;
             }
 
@@ -52,19 +51,18 @@ namespace project_andromeda
             Array.Resize(ref currentRoom, lineCount);
             currentRoom = System.IO.File.ReadAllLines(file);
 
-
-            Console.ReadLine();
-
         }
 
         public static void ListItemsInRoom()
         {
+            //andromeda.ReadData(item);
             foreach (string line in currentRoom)
             {
+                // Once a line with the item= key has been found, extract the data without the key
                 if (line.Contains("item="))
                 {
-
-                Console.WriteLine(line.IndexOf('='));
+                    int delimiter = line.IndexOf('=');
+                    Console.WriteLine(line.Substring(delimiter + 1));
                 }
             }
         }
