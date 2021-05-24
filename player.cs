@@ -1,5 +1,8 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace project_andromeda
 {
@@ -11,19 +14,47 @@ namespace project_andromeda
             Console.ReadLine();
             Environment.Exit(0);
         }
-        public static void inventory()
+        public static void inventory (){ }
+
+        class Item
         {
-            ArrayList items = new ArrayList()
-                {
-                    "Nothing at the moment, try picking up some items!"
-                };
 
-            Console.WriteLine();
 
-            foreach (var val in items)
-                Console.WriteLine(val);
-            Console.ReadLine();
+            public string name;
+            private bool useable;
+            private bool needsItem;
+            private string description;
+
+            public Item(string _name, bool canUse, string _description)
+            {
+                name = _name;
+                useable = canUse;
+                description = _description;
+            }
+
+            public string Name
+            {
+                get { return name; }
+            }
+
+            public bool Useable
+            {
+                get { return useable; }
+            }
+
+            public string Description
+            {
+                get { return description; }
+            }
         }
     }
 }
+           
+
+           
+            
+        
+ 
+
+ 
 
