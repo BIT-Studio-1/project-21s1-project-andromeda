@@ -1,0 +1,29 @@
+﻿{
+    "roomText": [
+    {
+      "1": "This will be the default text displayed",
+      "2": "This is a conditional text that will be displayed"
+    }
+  ],
+    "roomData": [
+        {
+            "news": "1111"
+
+        },
+        {
+            "floor": "cold"
+        }
+    ],
+    "roomItems": [
+        {
+            "item1": [
+                {
+                    "use" :  "What it can be used for"
+                }
+            ]
+        },
+        {
+
+        }
+    ]
+}
