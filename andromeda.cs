@@ -17,6 +17,11 @@ namespace project_andromeda
         }
         static void Game()
         {
+            int[] player = new int[2];
+            player[0] = 2;
+            player[1] = 2;
+
+
             string temp;
             int input;
             Random rand = new Random();
@@ -59,7 +64,7 @@ namespace project_andromeda
             //Remembers your last location, if you go out of bounds uses 'ghost' to set your position to your last known actual coordinates.
             int[] ghost = new int[2];
             do
-            { 
+            {
                 //Sets ghost position to be same as player before player input
                 ghost[0] = player[0];
                 ghost[1] = player[1];
@@ -99,13 +104,14 @@ namespace project_andromeda
                 foreach (int value in player)
                 {
                     //Tests if the player has entered an input that puts them out of bounds, and resets their position to their previous known location
-                    if ((value < 0) || (value > xaxis[xaxis.Length-1]) || (value > yaxis[yaxis.Length-1]))
+                    if ((value < 0) || (value > xaxis[xaxis.Length - 1]) || (value > yaxis[yaxis.Length - 1]))
                     {
                         Console.WriteLine("Out of bounds.");
                         player[0] = ghost[0];
                         player[1] = ghost[1];
                     }
                 }
+
             } while ((temp != "x")&&(temp != "X"));
         }
         static void Main()
