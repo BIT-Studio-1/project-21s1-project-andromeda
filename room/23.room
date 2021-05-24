@@ -1,21 +1,23 @@
 ﻿; This is room 23
 
 
-text
+text=
 You are standing in a delapidated medical bay.
 To your South is the stasis room.
 East and West have the most generic looking sliding doors you have ever laid your eyes on.
 North is outside the scope of the current map.
+#
 
-data
+data=
 ; Insert any variables and other data that is necessary here.
 news=0111
 floor=mossy
+#
 
-items
+items=
 ; Insert any item names here
 item=creel
-
+#
 
 
 

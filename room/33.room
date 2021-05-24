@@ -1,23 +1,25 @@
 ﻿; This is room 33
 
 
-text
+text=
 It smells faintly of chocolate in this room.
 To the west you see that familiar generic looking sliding door.
 To the south you feel an ominous aura.
 It looks like the narrator ran out of ideas and had to keep typing something just to get a prototype working.
-conditional=As you enter the room you kick over a jar and you hear the jingling of keys.
-else=It looks like you have done everything in this room. Git!
+;conditional=As you enter the room you kick over a jar and you hear the jingling of keys.
+;else=It looks like you have done everything in this room. Git!
+#
 
-data
+data=
 ; Insert any variables and other data that is necessary here.
 news=0011
 floor=wet
+#
 
-items
+items=
 ; Insert any item names here
 item=key
-
+#
 
 
 

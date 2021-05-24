@@ -2,24 +2,26 @@
 
 
 
-Text
+text=
 this room is very big and contains many tresures
 2 of them are traps and you will die upon opening them
 choose carefully which to open
+#
 
-text
-
+text2=
 you are capable for using the four doors in this room but be carefull 
 one of them will not allow you to come back to this room
 and another you will get stuck.
+#
 
-data
+data=
+#
 
-items
-
-items=treasure1 safe
-items=treasure2 trap
-items=treasure3 trap
-items=treasure4 safe
-items=trassure5 safe
-//you could make a random generater that auto assigns treausres wether they are safe of traps
+items=
+item=treasure1 safe
+item=treasure2 trap
+item=treasure3 trap
+item=treasure4 safe
+item=trassure5 safe
+;you could make a random generater that auto assigns treausres wether they are safe of traps
+#
