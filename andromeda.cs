@@ -74,6 +74,7 @@ namespace project_andromeda
                 Console.WriteLine($"Your position is x {player[0]}, y {player[1]}.");
                 Console.WriteLine("Input a direction to travel N/E/S/W.\n" +
                     "Input [I]nventory to list your currently held items\n" +
+                    "Input [P]ick up to grab an item\n" +
                     "Input [L]ook to get a description of the confines of your being.\n" +
                     "Or input [Q] to quit.\n\n");
                 do
@@ -107,18 +108,18 @@ namespace project_andromeda
                             break;
                         case "i":
                         case "I":
-                            //Player.Inventory();
+                            Player.PrintInventory();
                             break;
                         case "p":
                         case "P":
-                            //Player.PickUpItem();
+                            Player.PickUpItem();
                             break;
 
 
                         // @DEBUG
                         case "d":
                         case "D":
-                            Room.ListItemsInRoom();
+                            Room.GetItemsInRoom();
                             break;
 
                         default:

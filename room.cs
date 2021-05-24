@@ -9,6 +9,7 @@ namespace project_andromeda
     {
         public static char delimiter = '=';
         public static string[] currentRoom = new string[0];
+        public static List<string> roomItems = new List<string>();
 
 
         // Check if player can move in given direction
@@ -77,16 +78,22 @@ namespace project_andromeda
         }
 
 
-        // This lists the items in the current room. Used for @DEBUG
-        public static void ListItemsInRoom()
+        // This updates the items in the current room. Used for @DEBUG
+        public static List<string> GetItemsInRoom()
         {
-            List<string> items = andromeda.GetAllData(currentRoom, "item");
+            bool found = false;
 
-            foreach (string item in items)
+            foreach (string line in currentRoom)
             {
-                Console.WriteLine(item);
+                if (line.Contains("#")) found = false;
+                if (found && !(line.Contains(';'))) {
+                    int start = line.IndexOf(delimiter) + 1;
+                    roomItems.Add(line.Substring(start));
+                }
+                if (line.Contains("items=")) found = true;
             }
 
+            return roomItems;
         }
     }
 }
