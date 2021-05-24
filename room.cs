@@ -13,13 +13,31 @@ namespace project_andromeda
 
 
         // Check if player can move in given direction
-        public static int CanMove(string[] player, int news)
+        public static string CanMove(string x)
         {
-            int result = 0;
-
-
-
-            return result;
+            foreach (string line in currentRoom)
+            {
+                if (line.Contains("news="))
+                {
+                    if ((line.Substring(5, 1) == "0") || (x == "N") && (x=="n"))
+                    {
+                        x = "nol";
+                    }
+                    if ((line.Substring(6, 1) == "0") || (x == "E") && (x == "e"))
+                    {
+                        x = "nol";
+                    }
+                    if ((line.Substring(7, 1) == "0") || (x == "W") && (x == "w"))
+                    {
+                        x = "nol";
+                    }
+                    if ((line.Substring(8, 1) == "0") || (x == "S") && (x == "s"))
+                    {
+                        x = "nol";
+                    }
+                }
+            }
+            return x;
         }
 
 
