@@ -15,6 +15,7 @@ namespace project_andromeda
         // Check if player can move in given direction
         public static string CanMove(string x)
         {
+            //Checks if there is a wall in the chosen direction, changes the player's input if there is a wall.
             foreach (string line in currentRoom)
             {
                 if (line.Contains("news="))
