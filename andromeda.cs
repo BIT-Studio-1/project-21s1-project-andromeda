@@ -20,7 +20,7 @@ namespace project_andromeda
         {
             
 
-            string temp;
+            string temp, wall;
             int input;
             Random rand = new Random();
             //Generates a two dimensional grid. NOTE: If you change the array size, make sure x is equal to y.
@@ -67,9 +67,8 @@ namespace project_andromeda
             do
             {
                 Console.Clear();
+                //Read room data
                 Room.Read(player);
-
-                
                 //Sets ghost position to be same as player before player input
                 ghost[0] = player[0];
                 ghost[1] = player[1];
@@ -82,6 +81,9 @@ namespace project_andromeda
                 do
                 {
                     temp = Console.ReadLine();
+                    //Checks if there is a wall in the direction the player wants to move
+                    wall = Room.CanMove(temp);
+                    temp = wall;
                     input = 0;
                     switch (temp)
                     {
@@ -116,14 +118,10 @@ namespace project_andromeda
                         case "P":
                             Player.PickUpItem();
                             break;
-
-
-                        // @DEBUG
-                        case "d":
-                        case "D":
-                            Room.GetItemsInRoom();
+                        case "nol":
+                            input = 1;
+                            Console.WriteLine("There is a wall in the way!!");
                             break;
-
                         default:
                             input = 1;
                             Console.WriteLine("Invalid Input");
