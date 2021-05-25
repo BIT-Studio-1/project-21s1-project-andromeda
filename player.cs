@@ -15,40 +15,42 @@ namespace project_andromeda
             Console.ReadLine();
             Environment.Exit(0);
         }
-        public static void PrintInventory()
+        public static void inventory() { Console.WriteLine("This is the inventory"); }
+
+        public class Item
         {
-            ArrayList items = new ArrayList()
-                {
-                    "Nothing at the moment, try picking up some items!"
-                };
 
-            Console.WriteLine();
 
-            foreach (var val in items)
-                Console.WriteLine(val);
-            Console.ReadLine();
-        }
+            public string name;
+            private bool useable;
+            private bool needsItem;
+            private string description;
 
-        public static void PickUpItem()
-        {
-            Console.WriteLine("Which item would you like to pick up?");
-            temp = Console.ReadLine();
-            Room.roomItems = Room.GetItemsInRoom();
-
-            if (Room.roomItems.Contains(temp))
+            public Item(string _name, bool canUse, string _description) //item name, is this item usable? yes or no, item description
             {
-                Console.WriteLine($"Picked up {temp}.");
-                Player.Inventory.Add(temp);
-            }
-            else
-            {
-                Console.WriteLine("It looks like that item doesn't exist. Sorry.");
-                Console.ReadLine();
+                name = _name; //name string 
+                useable = canUse; //is the item usable?
+                description = _description; //description of item
             }
 
+            public string Name
+            {
+                get { return name; } //return (display) item name
+                set { name = value; }
+            }
+
+            public bool Useable
+            {
+                get { return Useable; } //return (display) usable (True or False)
+                set { Useable = value; }
+            }
+
+            public string Description
+            {
+                get { return Description; } //return (display) item description
+                set { Description = value; }
+            }
         }
-
-
     }
 }
 
