@@ -69,8 +69,6 @@ namespace project_andromeda
                 Console.Clear();
                 //Read room data
                 Room.Read(player);
-
-                
                 //Sets ghost position to be same as player before player input
                 ghost[0] = player[0];
                 ghost[1] = player[1];
@@ -83,10 +81,8 @@ namespace project_andromeda
                 do
                 {
                     temp = Console.ReadLine();
+                    //Checks if there is a wall in the direction the player wants to move
                     wall = Room.CanMove(temp);
-                    //Debug
-                    Console.WriteLine(wall);
-                    Console.ReadLine();
                     temp = wall;
                     input = 0;
                     switch (temp)
@@ -126,14 +122,6 @@ namespace project_andromeda
                             input = 1;
                             Console.WriteLine("There is a wall in the way!!");
                             break;
-
-
-
-                        // @DEBUG
-                        case "d":
-                        case "D":
-                            break;
-
                         default:
                             input = 1;
                             Console.WriteLine("Invalid Input");
