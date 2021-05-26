@@ -57,7 +57,12 @@ namespace project_andromeda
             roomx = player[0];
             roomy = player[1];
 
+            // Correct pathing depending on solution configuration
+#if DEBUG
             string file = @"..\..\..\room\" + roomx + roomy + ".room";
+#else
+            string file = @".\room\" + roomx + roomy + ".room";
+#endif
 
 
             // Check amount of lines in room text file and resize array
@@ -97,6 +102,7 @@ namespace project_andromeda
         }
 
 
+#if DEBUG
         // This updates the items in the current room. Used for @DEBUG
         public static List<string> GetItemsInRoom()
         {
@@ -114,5 +120,6 @@ namespace project_andromeda
 
             return roomItems;
         }
+#endif
     }
 }
