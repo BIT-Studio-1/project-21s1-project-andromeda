@@ -10,7 +10,10 @@ namespace project_andromeda
         //Create a new save file with default player variables and then start the game
         static void NewGame()
         {
-            File.Create("Save.txt");
+            File.Create(@"..\..\..\save\Save.txt");
+            StreamWriter sw = new StreamWriter(@"..\..\..\save\Save.txt");
+            sw.WriteLine("This is a WIP");
+            sw.Close();
             Game();
         }
         //Load player variables from a save file then start the game
