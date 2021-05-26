@@ -10,6 +10,7 @@ namespace project_andromeda
         //Create a new save file with default player variables and then start the game
         static void NewGame()
         {
+            File.Create("Save.txt");
             Game();
         }
         //Load player variables from a save file then start the game
@@ -113,11 +114,11 @@ namespace project_andromeda
                             break;
                         case "i":
                         case "I":
-                            Player.PrintInventory();
+                            //Player.PrintInventory();
                             break;
                         case "p":
                         case "P":
-                            Player.PickUpItem();
+                            //Player.PickUpItem();
                             break;
                         case "nol":
                             input = 1;

@@ -20,19 +20,19 @@ namespace project_andromeda
             {
                 if (line.Contains("news="))
                 {
-                    if ((line.Substring(5, 1) == "0") || (x == "N") && (x=="n"))
+                    if ((line.Substring(5, 1) == "0") && ((x == "N") || (x=="n")))
                     {
                         x = "nol";
                     }
-                    if ((line.Substring(6, 1) == "0") || (x == "E") && (x == "e"))
+                    if ((line.Substring(6, 1) == "0") && ((x == "E") || (x == "e")))
                     {
                         x = "nol";
                     }
-                    if ((line.Substring(7, 1) == "0") || (x == "W") && (x == "w"))
+                    if ((line.Substring(7, 1) == "0") && ((x == "W") || (x == "w")))
                     {
                         x = "nol";
                     }
-                    if ((line.Substring(8, 1) == "0") || (x == "S") && (x == "s"))
+                    if ((line.Substring(8, 1) == "0") && ((x == "S") || (x == "s")))
                     {
                         x = "nol";
                     }
