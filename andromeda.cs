@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.IO;
 
 namespace project_andromeda
 {
     class andromeda
     {
+        //Create a new save file with default player variables and then start the game
         static void NewGame()
         {
-            //Create a new save file with default player variables and then start the game
             Game();
         }
+        //Load player variables from a save file then start the game
         static void Load()
         {
-            //Load player variables from a save file then start the game
             Game();
         }
         static void Game()
