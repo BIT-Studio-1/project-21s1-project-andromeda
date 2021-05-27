@@ -43,7 +43,7 @@ namespace project_andromeda
 
 
 
-        public static void Read(int[] player)
+        public static void ReadRoomFile(int[] player)
         {
             /* This method loads a room into the game from an <x><y>.room file
              * 
@@ -73,14 +73,14 @@ namespace project_andromeda
             }
 
 
-
-            // Read room into array
+            // Resize array to line count of file
             Array.Resize(ref currentRoom, lineCount);
+            // Read room into array
             currentRoom = System.IO.File.ReadAllLines(file);
 
         }
 
-        // This method just grabs the text portion of the room file and prints it
+        // This method grabs the text portion of the room file and prints it
         public static void LookRoom()
         {
             List<string> roomText = new List<string>();

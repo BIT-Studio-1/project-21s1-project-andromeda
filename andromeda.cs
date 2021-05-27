@@ -63,7 +63,7 @@ namespace project_andromeda
             player[1] = 2;
 
             // Read room data into currentRoom
-            Room.Read(player);
+            Room.ReadRoomFile(player);
 
 
             //Takes a user input to move player position
@@ -92,7 +92,7 @@ namespace project_andromeda
             {
                 Console.Clear();
                 //Read room data
-                Room.Read(player);
+                Room.ReadRoomFile(player);
                 //Sets ghost position to be same as player before player input
                 ghost[0] = player[0];
                 ghost[1] = player[1];
