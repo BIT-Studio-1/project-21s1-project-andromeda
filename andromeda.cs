@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.IO;
+using System.Threading;
 
 namespace project_andromeda
 {
@@ -16,19 +16,34 @@ namespace project_andromeda
 #else
             StreamWriter sw = new StreamWriter(@".\save\Save.txt");
 #endif
-            sw.WriteLine("This is a WIP");
+            sw.WriteLine("player[0] = 2;\nplayer[1] = 2;");
             sw.Close();
             Game();
         }
         //Load player variables from a save file then start the game
         static void Load()
         {
+            
             Game();
         }
         static void Game()
         {
-            
+//            int[] test = new int[2];
+//            string line, test2;
+//            int loop=0;
+//#if DEBUG
+//            StreamReader sr = new StreamReader(@"..\..\..\save\Save.txt");
+//#else
+//            StreamReader sr = new StreamReader(@".\save\Save.txt");
+//#endif
+//            line = sr.ReadLine();
+//            do
+//            {
+//                if (line.Contains("player[0]"))
+//                {
 
+//                }
+//            } while(loop == 0);
             string temp, wall;
             int input;
             Random rand = new Random();
