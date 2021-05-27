@@ -16,7 +16,7 @@ namespace project_andromeda
 #else
             StreamWriter sw = new StreamWriter(@".\save\Save.txt");
 #endif
-            sw.WriteLine("player[0] = 2;\nplayer[1] = 2;");
+            sw.WriteLine("player[0] =2;\nplayer[1] =2;");
             sw.Close();
             Game();
         }
@@ -28,25 +28,34 @@ namespace project_andromeda
         }
         static void Game()
         {
-//            int[] test = new int[2];
-//            string line, test2;
-//            int loop=0;
-//#if DEBUG
-//            StreamReader sr = new StreamReader(@"..\..\..\save\Save.txt");
-//#else
-//            StreamReader sr = new StreamReader(@".\save\Save.txt");
-//#endif
-//            line = sr.ReadLine();
-//            do
-//            {
-//                if (line.Contains("player[0]"))
-//                {
-
-//                }
-//            } while(loop == 0);
-            string temp, wall;
-            int input;
+            string temp, wall, line;
+            int[] player = new int[2];
+            player[0] = 2;
+            player[1] = 2;
+            int loop = 1, index, input;
             Random rand = new Random();
+#if DEBUG
+            StreamReader sr = new StreamReader(@"..\..\..\save\Save.txt");
+#else
+            StreamReader sr = new StreamReader(@".\save\Save.txt");
+#endif
+            line = sr.ReadLine();
+            //Gets the player's position from the save file.
+            if (line.Contains("player[0]"))
+            {
+                index = line.IndexOf("=");
+                temp = line.Substring(index+1, 1);
+                player[0] = Convert.ToInt32(temp);
+            }
+            line = sr.ReadLine();
+            if (line.Contains("player[1]"))
+            {
+                index = line.IndexOf("=");
+                temp = line.Substring(index+1, 1);
+                player[0] = Convert.ToInt32(temp);
+            }
+            sr.Close();
+
             //Generates a two dimensional grid. NOTE: If you change the array size, make sure x is equal to y.
             int[] xaxis = new int[5], yaxis = new int[5];
 
@@ -56,12 +65,6 @@ namespace project_andromeda
                 xaxis[i] = i;
                 yaxis[i] = i;
             }
-
-            //Player position, 0 = x axis, 1 = y axis, starting position is x2 y2.
-            int[] player = new int[2];
-            player[0] = 2;
-            player[1] = 2;
-
             // Read room data into currentRoom
             Room.ReadRoomFile(player);
 
