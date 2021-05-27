@@ -19,36 +19,20 @@ namespace project_andromeda
 
         public class Item
         {
-
-
-            public string name;
-            private bool useable;
-            private bool needsItem;
-            private string description;
-
-            public Item(string _name, bool canUse, string _description) //item name, is this item usable? yes or no, item description
-            {
-                name = _name; //name string 
-                useable = canUse; //is the item usable?
-                description = _description; //description of item
-            }
-
             public string Name
             {
-                get { return name; } //return (display) item name
-                set { name = value; }
+                get { return Name; } //get name
+                set { Name = value; } //set name 
             }
-
-            public bool Useable
+            public bool Useable 
             {
-                get { return Useable; } //return (display) usable (True or False)
-                set { Useable = value; }
+                get { return Useable; } //get useable
+                set { Useable = value; } //set useable
             }
-
             public string Description
             {
-                get { return Description; } //return (display) item description
-                set { Description = value; }
+                get { return Description; } //get description
+                set { Description = value; } //set description
             }
         }
     }
