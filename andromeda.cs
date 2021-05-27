@@ -12,10 +12,8 @@ namespace project_andromeda
         {
             // This just checks if it is a debug build or a release and changes the pathing
 #if DEBUG
-            File.Create(@"..\..\..\save\Save.txt");
             StreamWriter sw = new StreamWriter(@"..\..\..\save\Save.txt");
 #else
-            File.Create(@".\save\Save.txt");
             StreamWriter sw = new StreamWriter(@".\save\Save.txt");
 #endif
             sw.WriteLine("This is a WIP");
