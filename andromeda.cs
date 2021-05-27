@@ -30,8 +30,6 @@ namespace project_andromeda
         {
             string temp, wall, line;
             int[] player = new int[2];
-            player[0] = 2;
-            player[1] = 2;
             int loop = 1, index, input;
             Random rand = new Random();
 #if DEBUG
@@ -52,7 +50,7 @@ namespace project_andromeda
             {
                 index = line.IndexOf("=");
                 temp = line.Substring(index+1, 1);
-                player[0] = Convert.ToInt32(temp);
+                player[1] = Convert.ToInt32(temp);
             }
             sr.Close();
 
