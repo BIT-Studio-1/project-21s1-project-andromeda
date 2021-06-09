@@ -53,16 +53,6 @@ namespace project_andromeda
                 player[1] = Convert.ToInt32(temp);
             }
             sr.Close();
-
-            //Generates a two dimensional grid. NOTE: If you change the array size, make sure x is equal to y.
-            int[] xaxis = new int[5], yaxis = new int[5];
-
-            // Populate array coordinates
-            for (int i = 0; i < xaxis.Length; i++)
-            {
-                xaxis[i] = i;
-                yaxis[i] = i;
-            }
             // Read room data into currentRoom
             Room.ReadRoomFile(player);
 
@@ -86,23 +76,11 @@ namespace project_andromeda
              * This room file would have information about what can be done in the room and the contextual information about what is in the room
              * 
              */
-
-            //Remembers your last location, if you go out of bounds uses 'ghost' to set your position to your last known actual coordinates.
-            int[] ghost = new int[2];
             do
             {
                 Console.Clear();
                 //Read room data
                 Room.ReadRoomFile(player);
-                //Sets ghost position to be same as player before player input
-                ghost[0] = player[0];
-                ghost[1] = player[1];
-                Console.WriteLine($"Your position is x {player[0]}, y {player[1]}.");
-                Console.WriteLine("Input a direction to travel N/E/S/W.\n" +
-                    "Input [I]nventory to list your currently held items\n" +
-                    "Input [P]ick up to grab an item\n" +
-                    "Input [L]ook to get a description of the confines of your being.\n" +
-                    "Or input [Q] to quit.\n\n");
                 do
                 {
                     temp = Console.ReadLine();
@@ -152,18 +130,7 @@ namespace project_andromeda
                             Console.WriteLine("Invalid Input");
                             break;
                     }
-                } while (input == 1);
-                foreach (int value in player)
-                {
-                    //Tests if the player has entered an input that puts them out of bounds, and resets their position to their previous known location
-                    if ((value < 0) || (value > xaxis[xaxis.Length - 1]) || (value > yaxis[yaxis.Length - 1]))
-                    {
-                        Console.WriteLine("Out of bounds.");
-                        player[0] = ghost[0];
-                        player[1] = ghost[1];
-                    }
-                }
-
+                } while (input == 1);                
             } while ((temp != "q")&&(temp != "Q"));
         }
 
