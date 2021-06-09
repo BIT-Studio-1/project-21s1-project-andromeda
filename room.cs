@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.IO;
 
 namespace project_andromeda
 {
@@ -20,7 +22,7 @@ namespace project_andromeda
             {
                 if (line.Contains("news="))
                 {
-                    if ((line.Substring(5, 1) == "0") && ((x == "N") || (x=="n")))
+                    if ((line.Substring(5, 1) == "0") && ((x == "N") || (x == "n")))
                     {
                         x = "nol";
                     }
@@ -97,7 +99,7 @@ namespace project_andromeda
             {
                 Console.WriteLine(line);
             }
-            
+
             Console.ReadLine();
         }
 
@@ -111,7 +113,8 @@ namespace project_andromeda
             foreach (string line in currentRoom)
             {
                 if (line.Contains("#")) found = false;
-                if (found && !(line.Contains(';'))) {
+                if (found && !(line.Contains(';')))
+                {
                     int start = line.IndexOf(delimiter) + 1;
                     roomItems.Add(line.Substring(start));
                 }
@@ -120,6 +123,111 @@ namespace project_andromeda
 
             return roomItems;
         }
+
+
+
+        //room navigation we might want to use
+        public struct room
+        {
+            public string name;
+            public string player_input;
+            public string description;
+        }
+        class Program
+        {
+            public static void load()
+            {
+                Console.WriteLine("Loading the game");
+                Console.WriteLine("...");
+                Thread.Sleep(1000);
+                Console.WriteLine("..");
+                Thread.Sleep(1000);
+                Console.WriteLine(".");
+                StreamReader sr = new StreamReader(@"loadgame.txt");
+
+
+                sr.Close();
+            }
+            public static void startingroom()
+            {
+                string temp;
+                for (int input = 1; input < 2; input++)
+                {
+                    StreamReader sr = new StreamReader(@"13.room");
+                    Console.WriteLine("Welcome to the first room of the game");
+                    Console.WriteLine("Give Room Description");
+                    Console.WriteLine("Give Direction what doors are avalibale");
+                    temp = Console.ReadLine();
+                    switch (temp)
+                    {
+                        case "2":
+                            Console.Clear();
+                            room2();
+                            break;
+                    }
+                    sr.Close();
+                }
+            }
+            public static void room2()
+            {
+                string temp;
+                Console.WriteLine("Room 2");
+                Console.WriteLine("Give Room Description");
+                Thread.Sleep(3000);
+                Console.WriteLine("Give Directions");
+                Console.WriteLine("Select 1 to return to starting room");
+                Console.WriteLine("Select 3 to go to room 3");
+                temp = Console.ReadLine();
+                switch (temp)
+                {
+                    case "1":
+                        Console.Clear();
+                        startingroom();
+                        break;
+                    case "3":
+                        Console.Clear();
+                        room3();
+                        break;
+                }
+            }
+            public static void room3()
+            {
+
+            }
+            static void Main(string[] args)
+            {
+                string temp;
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Select an option: ");
+                    Console.WriteLine("Select 1 to Start Game");
+                    Console.WriteLine("Select 2 to Load Game");
+                    Console.WriteLine("Select 0 to Close Game");
+                    temp = Console.ReadLine();
+                    switch (temp)
+                    {
+                        case "1":
+                            startingroom();
+                            break;
+                        case "2":
+                            load();
+                            break;
+                        default:
+                            Console.Clear();
+                            Console.WriteLine("Closing Game");
+                            Console.WriteLine();
+                            break;
+                    }
+                    Console.ReadLine();
+                } while (temp != "0");
+                Console.ReadLine();
+
+
+
+            }
 #endif
+        }
     }
 }
+
