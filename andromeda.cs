@@ -21,17 +21,10 @@ namespace project_andromeda
             Game();
         }
         //Load player variables from a save file then start the game
-        static void Load()
+        static void Load(ref int[] player)
         {
-            
-            Game();
-        }
-        static void Game()
-        {
-            string temp, wall, line;
-            int[] player = new int[2];
-            int loop = 1, index, input;
-            Random rand = new Random();
+            string line, temp;
+            int index;
 #if DEBUG
             StreamReader sr = new StreamReader(@"..\..\..\save\Save.txt");
 #else
@@ -39,20 +32,28 @@ namespace project_andromeda
 #endif
             line = sr.ReadLine();
             //Gets the player's position from the save file.
-            if (line.Contains("player[0]"))
+            if (line.Contains($"player[0]"))
             {
                 index = line.IndexOf("=");
-                temp = line.Substring(index+1, 1);
+                temp = line.Substring(index + 1, 1);
                 player[0] = Convert.ToInt32(temp);
             }
             line = sr.ReadLine();
             if (line.Contains("player[1]"))
             {
                 index = line.IndexOf("=");
-                temp = line.Substring(index+1, 1);
+                temp = line.Substring(index + 1, 1);
                 player[1] = Convert.ToInt32(temp);
             }
             sr.Close();
+        }
+        static void Game()
+        {
+            string temp, wall;
+            int[] player = new int[2];
+            int input;
+            Random rand = new Random();
+            Load(ref player);
             // Read room data into currentRoom
             Room.ReadRoomFile(player);
 
@@ -180,7 +181,7 @@ namespace project_andromeda
                         NewGame();
                         break;
                     case "2":
-                        Load();
+                        Game();
                         break;
                     case "3":
                         start = 0;
