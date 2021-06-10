@@ -14,6 +14,7 @@ text=
 
 ; Insert any variables and other data that is necessary here. Currently news= is the only supported data variable. 
 ; A 1 signifies the door is accessible a 0 means it is unaccessible.
+; Example: news=0101 (doors east and south are accessible)
 data=
 #
 
