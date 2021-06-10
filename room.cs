@@ -88,6 +88,12 @@ namespace project_andromeda
             List<string> roomText = new List<string>();
             bool found = false;
 
+            /* Iterate over the currentRoom string array
+             * and locate the text= token.
+             * Once the token is found store every subsequent
+             * line in the roomText string array, until the # token is found.
+             * At which point it stops reading.
+             */
             foreach (string line in currentRoom)
             {
                 if (line.Contains("#")) found = false;
@@ -95,6 +101,9 @@ namespace project_andromeda
                 if (line.Contains("text=")) found = true;
             }
 
+            /* Print every line in roomText to the screen
+             * At the current cursor position
+             */
             foreach (string line in roomText)
             {
                 Console.WriteLine(line);
