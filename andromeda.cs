@@ -20,9 +20,15 @@ namespace project_andromeda
             sw.Close();
             Game();
         }
+       
+        //Saves the players position
         static void Save(ref int[] player)
         {
+#if DEBUG
             StreamWriter sw = new StreamWriter(@"..\..\..\save\Save.txt");
+#else
+            StreamReader sr = new StreamReader(@".\save\Save.txt");
+#endif
             sw.WriteLine($"player[0] ={player[0]};\nplayer[1] ={player[1]};");
             sw.Close();
         }
@@ -143,6 +149,7 @@ namespace project_andromeda
                     }
                 } while (input == 1);                
             } while ((temp != "q")&&(temp != "Q"));
+            //Saves the player's position when player leaves the game loop
             Save(ref player);
         }
 
