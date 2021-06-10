@@ -104,8 +104,19 @@ namespace project_andromeda
         }
 
 
-#if DEBUG
+#if DEBUG && ITEMS
         // This updates the items in the current room. Used for @DEBUG
+
+        /*
+         *
+         *
+         *  This is deprecated as items were scrapped in our 
+         *  presentation release of the game.
+         *
+         *
+         *
+         *
+         */
         public static List<string> GetItemsInRoom()
         {
             bool found = false;
@@ -123,9 +134,9 @@ namespace project_andromeda
 
             return roomItems;
         }
+#endif
 
-
-
+#if ALT_MOVEMENT
         //room navigation we might want to use
         public struct room
         {
@@ -257,8 +268,8 @@ namespace project_andromeda
 
 
             }
-#endif
-        }
     }
+#endif
+}
 }
 
