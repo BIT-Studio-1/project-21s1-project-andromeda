@@ -145,7 +145,6 @@ namespace project_andromeda
                 Console.WriteLine(".");
                 StreamReader sr = new StreamReader(@"loadgame.txt");
 
-
                 sr.Close();
             }
             public static void startingroom()
@@ -192,9 +191,41 @@ namespace project_andromeda
             }
             public static void room3()
             {
+                string temp;
+                Console.WriteLine("Room 3");
+                Console.WriteLine("Give Room Description");
+                Thread.Sleep(3000);
+                Console.WriteLine("Directions");
+                Console.WriteLine("Press N/n to enter the room to the north");
+                Console.WriteLine("Press E/e to enter the room to the east");
+                Console.WriteLine("press W/w to enter the room to the west");
+                temp = Console.ReadLine();
+                switch (temp)
+                {
+                    case "W/w":
+                        Console.Clear();
+                        startingroom();
+                        break;
+                    case "E/e":
+                        Console.Clear();
+                        room4();
+                        break;
+                    case "N/n":
+                        Console.Clear();
+                        room5();
+                        break;
+                }
 
             }
-            static void Main(string[] args)
+            public static void room4()
+            {
+
+            }
+            public static void room5()
+            {
+
+            }
+            static void Main()
             {
                 string temp;
                 do
