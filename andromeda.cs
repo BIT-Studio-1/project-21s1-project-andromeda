@@ -20,6 +20,18 @@ namespace project_andromeda
             sw.Close();
             Game();
         }
+       
+        //Saves the players position
+        static void Save(ref int[] player)
+        {
+#if DEBUG
+            StreamWriter sw = new StreamWriter(@"..\..\..\save\Save.txt");
+#else
+            StreamReader sr = new StreamReader(@".\save\Save.txt");
+#endif
+            sw.WriteLine($"player[0] ={player[0]};\nplayer[1] ={player[1]};");
+            sw.Close();
+        }
         //Load player variables from a save file then start the game
         static void Load(ref int[] player)
         {
@@ -56,12 +68,6 @@ namespace project_andromeda
             Load(ref player);
             // Read room data into currentRoom
             Room.ReadRoomFile(player);
-            Console.WriteLine($"Your position is x {player[0]}, y {player[1]}.");
-            Console.WriteLine("Input a direction to travel N/E/S/W.\n" +
-                "Input [I]nventory to list your currently held items\n" +
-                "Input [P]ick up to grab an item\n" +
-                "Input [L]ook to get a description of the confines of your being.\n" +
-                "Or input [Q] to quit.\n\n");
             //Takes a user input to move player position
             /*
              * This will eventually need to take input as `<verb> <noun>` so you can actually interact with the environment.
@@ -86,6 +92,12 @@ namespace project_andromeda
                 Console.Clear();
                 //Read room data
                 Room.ReadRoomFile(player);
+                Console.WriteLine($"Your position is x {player[0]}, y {player[1]}.");
+                Console.WriteLine("Input a direction to travel N/E/S/W.\n" +
+                    "Input [I]nventory to list your currently held items\n" +
+                    "Input [P]ick up to grab an item\n" +
+                    "Input [L]ook to get a description of the confines of your being.\n" +
+                    "Or input [Q] to quit.\n\n");
                 do
                 {
                     temp = Console.ReadLine();
@@ -137,6 +149,8 @@ namespace project_andromeda
                     }
                 } while (input == 1);                
             } while ((temp != "q")&&(temp != "Q"));
+            //Saves the player's position when player leaves the game loop
+            Save(ref player);
         }
 
         // This makes a list with all of the items in it
