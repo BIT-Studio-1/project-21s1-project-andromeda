@@ -3,18 +3,19 @@
 ; Anything after a semi-colon is ignored.
 
 
-text
-; Insert the text to be printed to the screen here.
+; Insert the text to be printed to the screen here. The # tells the method when to stop reading
+text=
+# 
 
 
 
 
 
 
-
-data
-; Insert any variables and other data that is necessary here.
-
+; Insert any variables and other data that is necessary here. Currently news= is the only supported data variable. 
+; A 1 signifies the door is accessible a 0 means it is unaccessible.
+data=
+#
 
 
 
