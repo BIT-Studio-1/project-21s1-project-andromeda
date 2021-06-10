@@ -12,17 +12,7 @@ The door to the North is open and there is a warm breeze coming from it.
 data=
 ; Insert any variables and other data that is necessary here.
 news=1000
-floor=cold
 #
-
-items=
-; Insert any item names here
-item=chuck
-item=macguffin
-#
-
-
-
 
 
 
