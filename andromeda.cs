@@ -21,17 +21,10 @@ namespace project_andromeda
             Game();
         }
         //Load player variables from a save file then start the game
-        static void Load()
+        static void Load(ref int[] player)
         {
-            
-            Game();
-        }
-        static void Game()
-        {
-            string temp, wall, line;
-            int[] player = new int[2];
-            int loop = 1, index, input;
-            Random rand = new Random();
+            string line, temp;
+            int index;
 #if DEBUG
             StreamReader sr = new StreamReader(@"..\..\..\save\Save.txt");
 #else
@@ -39,24 +32,36 @@ namespace project_andromeda
 #endif
             line = sr.ReadLine();
             //Gets the player's position from the save file.
-            if (line.Contains("player[0]"))
+            if (line.Contains($"player[0]"))
             {
                 index = line.IndexOf("=");
-                temp = line.Substring(index+1, 1);
+                temp = line.Substring(index + 1, 1);
                 player[0] = Convert.ToInt32(temp);
             }
             line = sr.ReadLine();
             if (line.Contains("player[1]"))
             {
                 index = line.IndexOf("=");
-                temp = line.Substring(index+1, 1);
+                temp = line.Substring(index + 1, 1);
                 player[1] = Convert.ToInt32(temp);
             }
             sr.Close();
+        }
+        static void Game()
+        {
+            string temp, wall;
+            int[] player = new int[2];
+            int input;
+            Random rand = new Random();
+            Load(ref player);
             // Read room data into currentRoom
             Room.ReadRoomFile(player);
-
-
+            Console.WriteLine($"Your position is x {player[0]}, y {player[1]}.");
+            Console.WriteLine("Input a direction to travel N/E/S/W.\n" +
+                "Input [I]nventory to list your currently held items\n" +
+                "Input [P]ick up to grab an item\n" +
+                "Input [L]ook to get a description of the confines of your being.\n" +
+                "Or input [Q] to quit.\n\n");
             //Takes a user input to move player position
             /*
              * This will eventually need to take input as `<verb> <noun>` so you can actually interact with the environment.
@@ -180,7 +185,7 @@ namespace project_andromeda
                         NewGame();
                         break;
                     case "2":
-                        Load();
+                        Game();
                         break;
                     case "3":
                         start = 0;
