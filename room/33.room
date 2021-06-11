@@ -13,14 +13,7 @@ It looks like the narrator ran out of ideas and had to keep typing something jus
 data=
 ; Insert any variables and other data that is necessary here.
 news=0011
-floor=wet
 #
-
-items=
-; Insert any item names here
-item=key
-#
-
 
 
 

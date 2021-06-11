@@ -1,6 +1,6 @@
 ; This is room 32 
 
-text = 
+text= 
 
 As soon as you enter the room you notice that there is an enemy in the room
 big and tall orc with a club in his hand, you could stay and fight the orc to enter 
@@ -9,6 +9,6 @@ a chest that contains a magical keys that are used to opening the door in the ro
 #
 
 
-items=
-item=key
+data=
+news=1111
 #

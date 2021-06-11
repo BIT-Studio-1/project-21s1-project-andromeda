@@ -8,20 +8,6 @@ this room is very big and contains many tresures
 choose carefully which to open
 #
 
-text2=
-you are capable for using the four doors in this room but be carefull 
-one of them will not allow you to come back to this room
-and another you will get stuck.
-#
-
 data=
-#
-
-items=
-item=treasure1 safe
-item=treasure2 trap
-item=treasure3 trap
-item=treasure4 safe
-item=trassure5 safe
-;you could make a random generater that auto assigns treausres wether they are safe of traps
+news=1111
 #
