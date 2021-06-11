@@ -38,7 +38,7 @@ namespace project_andromeda
             string line, temp;
             int index;
 #if DEBUG
-            StreamReader sr = new StreamReader(@"Save.txt");
+            StreamReader sr = new StreamReader(@"..\..\..\save\Save.txt");
 #else
             StreamReader sr = new StreamReader(@".\save\Save.txt");
 #endif
