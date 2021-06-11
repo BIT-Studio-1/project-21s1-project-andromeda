@@ -128,14 +128,6 @@ namespace project_andromeda
                         case "L":
                             Room.LookRoom();
                             break;
-                        case "i":
-                        case "I":
-                            //Player.PrintInventory();
-                            break;
-                        case "p":
-                        case "P":
-                            //Player.PickUpItem();
-                            break;
                         case "nol":
                             input = 1;
                             Console.WriteLine("There is a wall in the way!!");
