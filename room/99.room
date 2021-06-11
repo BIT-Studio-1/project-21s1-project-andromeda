@@ -6,11 +6,11 @@ Corruption Room
 text=
 You enter the room and see the walls are tinted red. You see a 
 disembodied pair of eyes staring at you to the west, it is a cropped
-orange rectangle. To your north there is a blue door with '99' written on 
+orange rectangle. To your north there is a blue door with '98' written on 
 the top.
 #
 
-data=
 ; Insert any variables and other data that is necessary here.
+data=
 news=1010
 #
