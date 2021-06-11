@@ -108,8 +108,6 @@ namespace project_andromeda
             {
                 Console.WriteLine(line);
             }
-
-            Console.ReadLine();
         }
 
 
