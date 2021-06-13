@@ -16,7 +16,7 @@ text=
 ; A 1 signifies the door is accessible a 0 means it is unaccessible.
 ; Example: news=0101 (doors east and south are accessible)
 data=
-news=0101
+news=1010
 #
 
 
