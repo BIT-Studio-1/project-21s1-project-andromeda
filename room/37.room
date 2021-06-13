@@ -1,4 +1,4 @@
-﻿; This is a simple file format for storing room information and data
+; This is a simple file format for storing room information and data
 ; Files will be named as <xaxis><yaxis>.room
 ; Anything after a semi-colon is ignored.
 
@@ -16,7 +16,7 @@ text=
 ; A 1 signifies the door is accessible a 0 means it is unaccessible.
 ; Example: news=0101 (doors east and south are accessible)
 data=
-news=1111
+news=1101
 #
 
 

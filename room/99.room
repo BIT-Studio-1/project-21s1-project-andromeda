@@ -1,23 +1,16 @@
-﻿; This is a simple file format for storing room information and data
-; Files will be named as <xaxis><yaxis>.room
-; Anything after a semi-colon is ignored.
-
-
-; Insert the text to be printed to the screen here. The # tells the method when to stop reading
-text=
-# 
-
-
-
-
-
-
-; Insert any variables and other data that is necessary here. Currently news= is the only supported data variable. 
-; A 1 signifies the door is accessible a 0 means it is unaccessible.
-; Example: news=0101 (doors east and south are accessible)
-data=
-news=1111
+﻿; Room 99
+name=
+Corruption Room
 #
 
+text=
+You enter the room and see the walls are tinted red. You see a 
+disembodied pair of eyes staring at you to the west, it is a cropped
+orange rectangle. To your north there is a blue door with '98' written on 
+the top.
+#
 
-
+; Insert any variables and other data that is necessary here.
+data=
+news=0011
+#

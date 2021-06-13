@@ -1,23 +1,14 @@
-﻿; This is a simple file format for storing room information and data
-; Files will be named as <xaxis><yaxis>.room
-; Anything after a semi-colon is ignored.
+; This is room 32 
 
+text= 
 
-; Insert the text to be printed to the screen here. The # tells the method when to stop reading
-text=
-# 
-
-
-
-
-
-
-; Insert any variables and other data that is necessary here. Currently news= is the only supported data variable. 
-; A 1 signifies the door is accessible a 0 means it is unaccessible.
-; Example: news=0101 (doors east and south are accessible)
-data=
-news=1111
+As soon as you enter the room you notice that there is an enemy in the room
+big and tall orc with a club in his hand, you could stay and fight the orc to enter 
+through the door behind him or run away throught the door you came from, killing the orc will drop
+a chest that contains a magical keys that are used to opening the door in the room
 #
 
 
-
+data=
+news=0100
+#
