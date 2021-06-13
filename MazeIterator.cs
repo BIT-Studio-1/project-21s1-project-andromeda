@@ -136,10 +136,10 @@ namespace project_andromeda
             
             // Write the fileData string array to file
                 System.IO.File.WriteAllLines(filePath, fileData);
-                }
-            }
-
         }
-
     }
+
+        
+
 }
+
