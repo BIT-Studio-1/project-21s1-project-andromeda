@@ -12,7 +12,7 @@ namespace project_andromeda
         {
             // This just checks if it is a debug build or a release and changes the pathing
 #if DEBUG
-            StreamWriter sw = new StreamWriter(@"..\..\..\save\Save.txt");
+            StreamWriter sw = new StreamWriter(@"..\..\..\Save.txt");
 #else
             StreamWriter sw = new StreamWriter(@".\save\Save.txt");
 #endif
@@ -25,7 +25,7 @@ namespace project_andromeda
         static void Save(ref int[] player)
         {
 #if DEBUG
-            StreamWriter sw = new StreamWriter(@"..\..\..\save\Save.txt");
+            StreamWriter sw = new StreamWriter(@"..\..\..\Save.txt");
 #else
             StreamReader sr = new StreamReader(@".\save\Save.txt");
 #endif
@@ -38,7 +38,7 @@ namespace project_andromeda
             string line, temp;
             int index;
 #if DEBUG
-            StreamReader sr = new StreamReader(@"..\..\..\save\Save.txt");
+            StreamReader sr = new StreamReader(@"..\..\..\Save.txt");
 #else
             StreamReader sr = new StreamReader(@".\save\Save.txt");
 #endif
