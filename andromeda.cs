@@ -12,7 +12,7 @@ namespace project_andromeda
         {
             // This just checks if it is a debug build or a release and changes the pathing
 #if DEBUG
-            StreamWriter sw = new StreamWriter(@"Save.txt");
+            StreamWriter sw = new StreamWriter(@"..\..\..\save\Save.txt");
 #else
             StreamWriter sw = new StreamWriter(@".\save\Save.txt");
 #endif
