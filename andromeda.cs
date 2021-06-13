@@ -92,6 +92,13 @@ namespace project_andromeda
                 Console.Clear();
                 //Read room data
                 Room.ReadRoomFile(player);
+
+                // Check if player is in room 49.room and end game.
+                if ((player[0] == 4) && (player[1] == 9))
+                {
+                    Console.WriteLine("Congratulations you won!");
+                    //Player.Win();
+                }
                 Console.WriteLine($"Your position is x {player[0]}, y {player[1]}.");
                 Console.WriteLine("Input a direction to travel N/E/S/W.\n");
                 Room.LookRoom();
