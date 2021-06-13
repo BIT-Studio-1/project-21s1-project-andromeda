@@ -175,7 +175,8 @@ namespace project_andromeda
 
         static void Main()
         {
-            MazeIterator.WriteNewsToRoom(MazeIterator.ReadAllRoomFiles(), MazeIterator.ReadNewsFile()); Console.ReadLine();
+            //MazeIterator.WriteNewsToRoom(MazeIterator.ReadAllRoomFiles(), MazeIterator.ReadNewsFile());
+            MazeIterator.WriteNewsFromRoomFiles(MazeIterator.ReadAllNewRoomFiles()); Console.ReadLine();
             //string temp;
             //int start=1;
             //do
