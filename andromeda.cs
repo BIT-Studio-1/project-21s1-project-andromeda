@@ -175,32 +175,32 @@ namespace project_andromeda
 
         static void Main()
         {
-            
-            string temp;
-            int start=1;
-            do
-            {
-                Console.Clear();
-                Console.WriteLine("ANDROMEDA\nMain Menu\n\n1. New Game\n2. Load Game\n3. Exit");
-                temp = Console.ReadLine();
-                switch (temp)
-                {
-                    case "1":
-                        NewGame();
-                        break;
-                    case "2":
-                        Game();
-                        break;
-                    case "3":
-                        start = 0;
-                        break;
-                    default:
-                        Console.Clear();
-                        Console.WriteLine("Invalid Input");
-                        Thread.Sleep(1500);
-                        break;
-                }
-            } while (start == 1);
+            MazeIterator.WriteNewsToRoom(MazeIterator.ReadAllRoomFiles(), MazeIterator.ReadNewsFile()); Console.ReadLine();
+            //string temp;
+            //int start=1;
+            //do
+            //{
+            //    Console.Clear();
+            //    Console.WriteLine("ANDROMEDA\nMain Menu\n\n1. New Game\n2. Load Game\n3. Exit");
+            //    temp = Console.ReadLine();
+            //    switch (temp)
+            //    {
+            //        case "1":
+            //            NewGame();
+            //            break;
+            //        case "2":
+            //            Game();
+            //            break;
+            //        case "3":
+            //            start = 0;
+            //            break;
+            //        default:
+            //            Console.Clear();
+            //            Console.WriteLine("Invalid Input");
+            //            Thread.Sleep(1500);
+            //            break;
+            //    }
+            //} while (start == 1);
         }
     }
 }
