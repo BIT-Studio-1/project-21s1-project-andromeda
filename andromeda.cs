@@ -27,7 +27,7 @@ namespace project_andromeda
 #if DEBUG
             StreamWriter sw = new StreamWriter(@"..\..\..\Save.txt");
 #else
-            StreamReader sr = new StreamReader(@".\save\Save.txt");
+            StreamWriter sw = new StreamWriter(@".\save\Save.txt");
 #endif
             sw.WriteLine($"player[0] ={player[0]};\nplayer[1] ={player[1]};");
             sw.Close();
