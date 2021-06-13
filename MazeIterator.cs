@@ -6,6 +6,12 @@ namespace project_andromeda
 {
     class MazeIterator
     {
+
+        /*
+         * This class was used to generate the maze and do various modifications of the room files.
+         * It is not necessary in the functioning of the game but it will prove invaluable for 
+         * modifying the map structure of the game.
+         */
         public static string[,][] ReadAllRoomFiles()
         {
             string[,] AllRoomFiles = new string[10, 10];
