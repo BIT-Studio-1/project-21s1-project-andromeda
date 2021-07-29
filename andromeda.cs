@@ -33,8 +33,9 @@ namespace project_andromeda
             sw.Close();
         }
         //Load player variables from a save file
-        static void Load(ref int[] player)
+        static void Load()
         {
+            int[] player = new int[2];
             string line, temp;
             int index;
 #if DEBUG
@@ -65,7 +66,6 @@ namespace project_andromeda
             int[] player = new int[2];
             int input;
             Random rand = new Random();
-            Load(ref player);
             // Read room data into currentRoom
             Room.ReadRoomFile(player);
             //Takes a user input to move player position
@@ -147,7 +147,15 @@ namespace project_andromeda
                         NewGame();
                         break;
                     case "2":
-                        Game();
+                        try
+                        {
+                            Load();
+                        }
+                        catch (System.IO.FileNotFoundException)
+                        {
+                            Console.WriteLine("Error, Save file not found.");
+                        }
+                        Console.ReadLine();
                         break;
                     case "3":
                         start = 0;
