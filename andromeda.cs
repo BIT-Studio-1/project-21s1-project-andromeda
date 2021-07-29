@@ -33,7 +33,7 @@ namespace project_andromeda
             sw.Close();
         }
         //Load player variables from a save file
-        static void Load()
+        static int[] Load()
         {
             int[] player = new int[2];
             string line, temp;
@@ -59,11 +59,11 @@ namespace project_andromeda
                 player[1] = Convert.ToInt32(temp);
             }
             sr.Close();
+            return player;
         }
-        static void Game()
+        static void Game(int[] player)
         {
             string temp, wall;
-            int[] player = new int[2];
             int input;
             Random rand = new Random();
             // Read room data into currentRoom
@@ -149,7 +149,7 @@ namespace project_andromeda
                     case "2":
                         try
                         {
-                            Load();
+                            Game(Load());
                         }
                         catch (System.IO.FileNotFoundException)
                         {
