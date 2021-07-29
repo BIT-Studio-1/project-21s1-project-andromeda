@@ -5,6 +5,7 @@
 
 ; Insert the text to be printed to the screen here. The # tells the method when to stop reading
 text=
+ROOM "17"
 # 
 
 
