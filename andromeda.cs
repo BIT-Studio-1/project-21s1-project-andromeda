@@ -32,7 +32,7 @@ namespace project_andromeda
             sw.WriteLine($"player[0] ={player[0]};\nplayer[1] ={player[1]};");
             sw.Close();
         }
-        //Load player variables from a save file then start the game
+        //Load player variables from a save file
         static void Load(ref int[] player)
         {
             string line, temp;
@@ -69,24 +69,7 @@ namespace project_andromeda
             // Read room data into currentRoom
             Room.ReadRoomFile(player);
             //Takes a user input to move player position
-            /*
-             * This will eventually need to take input as `<verb> <noun>` so you can actually interact with the environment.
-             * E.G. `use hammer`
-             * And if we have time you would have a context you want to do previous commands in too. So you could input `nail` after
-             * to instruct the hammer to be used on the nail.
-             * 
-             * */
-
-
-            // Main game loop
-            /*
-             * Eventually this should maybe read a room text file? E.G. 22.room would be loaded at the start since player is at 
-             * position[0] = 2;
-             * position[1] = 2;
-             * 
-             * This room file would have information about what can be done in the room and the contextual information about what is in the room
-             * 
-             */
+            
             do
             {
                 Console.Clear();
