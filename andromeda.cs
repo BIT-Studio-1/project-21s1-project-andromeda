@@ -192,7 +192,6 @@ namespace project_andromeda
                 Console.WriteLine("1. Start a new game");
                 Console.WriteLine("2. Load the previous game");
                 Console.WriteLine("3. Exit the game");
-                Console.WriteLine("ANDROMEDA\nMain Menu\n\n1. New Game\n2. Load Game\n3. Exit");
                 temp = Console.ReadLine();
                 switch (temp)
                 {
