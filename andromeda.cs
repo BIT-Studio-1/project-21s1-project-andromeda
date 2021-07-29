@@ -149,37 +149,6 @@ namespace project_andromeda
             //Saves the player's position when player leaves the game loop
             Save(ref player);
         }
-
-        // This makes a list with all of the items in it
-        public static List<string> GetAllData(string[] dataString, string dataType)
-        {
-            List<string> allData = new List<string>();
-            foreach (string line in dataString)
-            {        
-                int delimiter = line.IndexOf('=');
-                allData.Add(line.Substring(delimiter + 1));
-            }
-            return allData;
-        }
-
-        // This returns a single item once you know it exists
-        public static string GetData(string[] dataString, string dataType, string name)
-        {
-            string data = "\0";
-            foreach (string line in dataString)
-            {
-                // Once a line with the item= key has been found and it has the correct name,
-                // extract the data without the key
-                if (line.Contains(dataType) && line.Contains(name))
-                {
-                    int delimiterIndex = line.IndexOf(Room.delimiter);
-                    data = line.Substring(delimiterIndex + 1);
-                }
-            }
-            return data;
-        }
-
-
         static void Main()
         {
             string temp;
@@ -208,5 +177,33 @@ namespace project_andromeda
                 }
             } while (start == 1);
         }
+         // This makes a list with all of the items in it
+        //public static List<string> GetAllData(string[] dataString, string dataType)
+        //{
+        //    List<string> allData = new List<string>();
+        //    foreach (string line in dataString)
+        //    {        
+        //        int delimiter = line.IndexOf('=');
+        //        allData.Add(line.Substring(delimiter + 1));
+        //    }
+        //    return allData;
+        //}
+
+        //// This returns a single item once you know it exists
+        //public static string GetData(string[] dataString, string dataType, string name)
+        //{
+        //    string data = "\0";
+        //    foreach (string line in dataString)
+        //    {
+        //        // Once a line with the item= key has been found and it has the correct name,
+        //        // extract the data without the key
+        //        if (line.Contains(dataType) && line.Contains(name))
+        //        {
+        //            int delimiterIndex = line.IndexOf(Room.delimiter);
+        //            data = line.Substring(delimiterIndex + 1);
+        //        }
+        //    }
+        //    return data;
+        //}
     }
 }
