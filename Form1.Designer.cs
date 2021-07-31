@@ -1,7 +1,7 @@
 ﻿
 namespace project_andromeda
 {
-    partial class Form1
+    partial class mainGui
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace project_andromeda
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textOutput = new System.Windows.Forms.TextBox();
             this.buttonNorth = new System.Windows.Forms.Button();
             this.buttonEast = new System.Windows.Forms.Button();
             this.buttonSouth = new System.Windows.Forms.Button();
@@ -37,13 +37,13 @@ namespace project_andromeda
             this.directionalLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textOutput
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(776, 312);
-            this.textBox1.TabIndex = 0;
+            this.textOutput.Location = new System.Drawing.Point(12, 12);
+            this.textOutput.Multiline = true;
+            this.textOutput.Name = "textOutput";
+            this.textOutput.Size = new System.Drawing.Size(776, 312);
+            this.textOutput.TabIndex = 0;
             // 
             // buttonNorth
             // 
@@ -53,6 +53,7 @@ namespace project_andromeda
             this.buttonNorth.TabIndex = 1;
             this.buttonNorth.Text = "North";
             this.buttonNorth.UseVisualStyleBackColor = true;
+            this.buttonNorth.Click += new System.EventHandler(this.buttonNorth_Click);
             // 
             // buttonEast
             // 
@@ -62,6 +63,7 @@ namespace project_andromeda
             this.buttonEast.TabIndex = 2;
             this.buttonEast.Text = "East";
             this.buttonEast.UseVisualStyleBackColor = true;
+            this.buttonEast.Click += new System.EventHandler(this.buttonEast_Click);
             // 
             // buttonSouth
             // 
@@ -71,6 +73,7 @@ namespace project_andromeda
             this.buttonSouth.TabIndex = 3;
             this.buttonSouth.Text = "South";
             this.buttonSouth.UseVisualStyleBackColor = true;
+            this.buttonSouth.Click += new System.EventHandler(this.buttonSouth_Click);
             // 
             // buttonWest
             // 
@@ -80,6 +83,7 @@ namespace project_andromeda
             this.buttonWest.TabIndex = 4;
             this.buttonWest.Text = "West";
             this.buttonWest.UseVisualStyleBackColor = true;
+            this.buttonWest.Click += new System.EventHandler(this.buttonWest_Click);
             // 
             // directionalLabel
             // 
@@ -90,7 +94,7 @@ namespace project_andromeda
             this.directionalLabel.TabIndex = 5;
             this.directionalLabel.Text = "Directions";
             // 
-            // Form1
+            // mainGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -100,9 +104,10 @@ namespace project_andromeda
             this.Controls.Add(this.buttonSouth);
             this.Controls.Add(this.buttonEast);
             this.Controls.Add(this.buttonNorth);
-            this.Controls.Add(this.textBox1);
-            this.Name = "Form1";
+            this.Controls.Add(this.textOutput);
+            this.Name = "mainGui";
             this.Text = "ANDROMEDA";
+            this.Load += new System.EventHandler(this.mainGui_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,12 +115,12 @@ namespace project_andromeda
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button buttonNorth;
-        private System.Windows.Forms.Button buttonEast;
-        private System.Windows.Forms.Button buttonSouth;
-        private System.Windows.Forms.Button buttonWest;
-        private System.Windows.Forms.Label directionalLabel;
+        public System.Windows.Forms.TextBox textOutput;
+        public System.Windows.Forms.Button buttonNorth;
+        public System.Windows.Forms.Button buttonEast;
+        public System.Windows.Forms.Button buttonSouth;
+        public System.Windows.Forms.Button buttonWest;
+        public System.Windows.Forms.Label directionalLabel;
     }
 }
 

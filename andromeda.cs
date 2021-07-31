@@ -8,6 +8,14 @@ namespace project_andromeda
 {
     class andromeda
     {
+        public static mainGui.ControlCollection guiControls;
+        private static TextBox textOutput;
+        private static Label directionalLabel;
+        private static Button buttonNorth;
+        private static Button buttonEast;
+        private static Button buttonWest;
+        private static Button buttonSouth;
+
         //Create a new save file with default player variables and then start the game
         static void NewGame()
         {
@@ -186,15 +194,30 @@ namespace project_andromeda
             string temp;
             int start = 1;
 
+
             // Generate form
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new mainGui(guiControls));
+
+            // Grab a reference to the current running form
+            Form formOwner = mainGui.ActiveForm;
+
+            // Instantiate the control collection
+            guiControls = new mainGui.ControlCollection(formOwner);
+
+            // Make local references to the gui controls
+            textOutput       = (TextBox) guiControls["textOutput"];
+            directionalLabel = (Label)   guiControls["directionalLabel"];
+            buttonNorth      = (Button)  guiControls["buttonNorth"];
+            buttonEast       = (Button)  guiControls["buttonEast"];
+            buttonWest       = (Button)  guiControls["buttonWest"];
+            buttonSouth      = (Button)  guiControls["buttonSouth"];
 
             do
             {
-                Console.Clear();
-                Console.WriteLine("ANDROMEDA\nMain Menu\n\n1. New Game\n2. Load Game\n3. Exit");
+                textOutput.Clear();
+                textOutput.AppendText("ANDROMEDA\nMain Menu\n\n1. New Game\n2. Load Game\n3. Exit");
                 temp = Console.ReadLine();
                 switch (temp)
                 {
@@ -208,8 +231,8 @@ namespace project_andromeda
                         start = 0;
                         break;
                     default:
-                        Console.Clear();
-                        Console.WriteLine("Invalid Input");
+                        textOutput.Clear();
+                        textOutput.AppendText("Invalid Input");
                         Thread.Sleep(1500);
                         break;
                 }

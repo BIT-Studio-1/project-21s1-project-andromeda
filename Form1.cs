@@ -10,11 +10,50 @@ using System.Windows.Forms;
 
 namespace project_andromeda
 {
-    public partial class Form1 : Form
+    public partial class mainGui : Form
     {
-        public Form1()
+        private ControlCollection guiControls;
+
+        public mainGui(ControlCollection guiControls)
         {
             InitializeComponent();
+            Form ownerShip = Owner;
+            guiControls = new ControlCollection(ownerShip);
+            this.guiControls = guiControls;
+        }
+        private void mainGui_Load(object sender, EventArgs e)
+        {
+            fillControlCollection();
+        }
+
+        private void buttonNorth_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void buttonEast_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonWest_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSouth_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fillControlCollection()
+        {
+            guiControls.Add(textOutput);
+            guiControls.Add(directionalLabel);
+            guiControls.Add(buttonNorth);
+            guiControls.Add(buttonEast);
+            guiControls.Add(buttonWest);
+            guiControls.Add(buttonSouth);
         }
     }
 }
