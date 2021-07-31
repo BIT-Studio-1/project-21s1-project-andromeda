@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace project_andromeda
 {
@@ -184,6 +185,12 @@ namespace project_andromeda
         {
             string temp;
             int start = 1;
+
+            // Generate form
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+
             do
             {
                 Console.Clear();
