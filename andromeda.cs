@@ -52,9 +52,16 @@ namespace project_andromeda
             int start = 1;
             do
             {
+                // Check if player is in room 49.room and end game.
+                if ((player[0] == 4) && (player[1] == 9))
+                {
+                    Console.WriteLine("Congratulations you won!");
+                    //Player.Win();
+                    Console.ReadLine();
+                }
                 DisplayGameUI(ref player);
                 //Takes a user input to move player position
-                UserInputGame();
+                GameUserInput(ref player);
             } while (start == 1);
             //Saves the player's position when player leaves the game loop
             Save(ref player);
@@ -68,6 +75,53 @@ namespace project_andromeda
             Console.WriteLine("Input a direction to travel N/E/S/W.\n");
             Room.LookRoom();
             Console.WriteLine("Or input [Q] to quit.\n\n");
+        }
+        //Takes a user input to decide what to do next.
+        static void GameUserInput(ref int[] player)
+        {
+            int input;
+            do
+            {
+                string temp = Console.ReadLine();
+                //Checks if there is a wall in the direction the player wants to move
+                string wall = Room.CanMove(temp);
+                temp = wall;
+                input = 0;
+                switch (temp)
+                {
+                    case "n":
+                    case "N":
+                        player[1]++;
+                        break;
+                    case "s":
+                    case "S":
+                        player[1]--;
+                        break;
+                    case "e":
+                    case "E":
+                        player[0]++;
+                        break;
+                    case "w":
+                    case "W":
+                        player[0]--;
+                        break;
+                    case "q":
+                    case "Q":
+                        break;
+                    case "l":
+                    case "L":
+                        Room.LookRoom();
+                        break;
+                    case "nol":
+                        input = 1;
+                        Console.WriteLine("There is a wall in the way!!");
+                        break;
+                    default:
+                        input = 1;
+                        Console.WriteLine("Invalid Input");
+                        break;
+                }
+            } while (input == 1);
         }
         static void Game(int[] player)
         {
