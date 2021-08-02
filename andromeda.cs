@@ -109,10 +109,6 @@ namespace project_andromeda
                     case "Q":
                         start = 0;
                         break;
-                    case "l":
-                    case "L":
-                        Room.LookRoom();
-                        break;
                     case "nol":
                         input = 1;
                         Console.WriteLine("There is a wall in the way!!");
