@@ -6,21 +6,7 @@ using System.Threading;
 namespace project_andromeda
 {
     class andromeda
-    {
-        //Create a new save file with default player variables and then start the game
-        static void NewGame()
-        {
-            // This just checks if it is a debug build or a release and changes the pathing
-#if DEBUG
-            StreamWriter sw = new StreamWriter(@"..\..\..\Save.txt");
-#else
-            StreamWriter sw = new StreamWriter(@".\save\Save.txt");
-#endif
-            sw.WriteLine("player[0] =2;\nplayer[1] =2;");
-            sw.Close();
-            Game();
-        }
-       
+    {  
         //Saves the players position
         static void Save(ref int[] player)
         {
@@ -32,9 +18,10 @@ namespace project_andromeda
             sw.WriteLine($"player[0] ={player[0]};\nplayer[1] ={player[1]};");
             sw.Close();
         }
-        //Load player variables from a save file then start the game
-        static void Load(ref int[] player)
+        //Load player variables from a save file
+        static int[] Load()
         {
+            int[] player = new int[2];
             string line, temp;
             int index;
 #if DEBUG
@@ -58,128 +45,81 @@ namespace project_andromeda
                 player[1] = Convert.ToInt32(temp);
             }
             sr.Close();
+            return player;
         }
-        static void Game()
+        static void Game(int[] player)
         {
-            string temp, wall;
-            int[] player = new int[2];
-            int input;
-            Random rand = new Random();
-            Load(ref player);
-            // Read room data into currentRoom
-            Room.ReadRoomFile(player);
-            //Takes a user input to move player position
-            /*
-             * This will eventually need to take input as `<verb> <noun>` so you can actually interact with the environment.
-             * E.G. `use hammer`
-             * And if we have time you would have a context you want to do previous commands in too. So you could input `nail` after
-             * to instruct the hammer to be used on the nail.
-             * 
-             * */
-
-
-            // Main game loop
-            /*
-             * Eventually this should maybe read a room text file? E.G. 22.room would be loaded at the start since player is at 
-             * position[0] = 2;
-             * position[1] = 2;
-             * 
-             * This room file would have information about what can be done in the room and the contextual information about what is in the room
-             * 
-             */
+            int start = 1;
             do
             {
-                Console.Clear();
-                //Read room data
-                Room.ReadRoomFile(player);
-
                 // Check if player is in room 49.room and end game.
                 if ((player[0] == 4) && (player[1] == 9))
                 {
                     Console.WriteLine("Congratulations you won!");
                     //Player.Win();
+                    Console.ReadLine();
                 }
-                Console.WriteLine($"Your position is x {player[0]}, y {player[1]}.");
-                Console.WriteLine("Input a direction to travel N/E/S/W.\n");
-                Room.LookRoom();
-                Console.WriteLine("Or input [Q] to quit.\n\n");
-                do
-                {
-                    temp = Console.ReadLine();
-                    //Checks if there is a wall in the direction the player wants to move
-                    wall = Room.CanMove(temp);
-                    temp = wall;
-                    input = 0;
-                    switch (temp)
-                    {
-                        case "n":
-                        case "N":
-                            player[1]++;
-                            break;
-                        case "s":
-                        case "S":
-                            player[1]--;
-                            break;
-                        case "e":
-                        case "E":
-                            player[0]++;
-                            break;
-                        case "w":
-                        case "W":
-                            player[0]--;
-                            break;
-                        case "q":
-                        case "Q":
-                            break;
-                        case "l":
-                        case "L":
-                            Room.LookRoom();
-                            break;
-                        case "nol":
-                            input = 1;
-                            Console.WriteLine("There is a wall in the way!!");
-                            break;
-                        default:
-                            input = 1;
-                            Console.WriteLine("Invalid Input");
-                            break;
-                    }
-                } while (input == 1);                
-            } while ((temp != "q")&&(temp != "Q"));
+                DisplayGameUI(ref player);
+                //Takes a user input to move player position
+                GameUserInput(ref player, ref start);
+            } while (start == 1);
             //Saves the player's position when player leaves the game loop
             Save(ref player);
         }
-
-        // This makes a list with all of the items in it
-        public static List<string> GetAllData(string[] dataString, string dataType)
+        static void DisplayGameUI(ref int[] player)
         {
-            List<string> allData = new List<string>();
-            foreach (string line in dataString)
-            {        
-                int delimiter = line.IndexOf('=');
-                allData.Add(line.Substring(delimiter + 1));
-            }
-            return allData;
+            Console.Clear();
+            //Read room data
+            Room.ReadRoomFile(player);
+            Console.WriteLine($"Your position is x {player[0]}, y {player[1]}.");
+            Console.WriteLine("Input a direction to travel N/E/S/W.\n");
+            Room.LookRoom();
+            Console.WriteLine("Or input [Q] to quit.\n\n");
         }
-
-        // This returns a single item once you know it exists
-        public static string GetData(string[] dataString, string dataType, string name)
+        //Takes a user input to decide what to do next.
+        static void GameUserInput(ref int[] player, ref int start)
         {
-            string data = "\0";
-            foreach (string line in dataString)
+            int input;
+            do
             {
-                // Once a line with the item= key has been found and it has the correct name,
-                // extract the data without the key
-                if (line.Contains(dataType) && line.Contains(name))
+                string temp = Console.ReadLine();
+                //Checks if there is a wall in the direction the player wants to move
+                string wall = Room.CanMove(temp);
+                temp = wall;
+                input = 0;
+                switch (temp)
                 {
-                    int delimiterIndex = line.IndexOf(Room.delimiter);
-                    data = line.Substring(delimiterIndex + 1);
+                    case "n":
+                    case "N":
+                        player[1]++;
+                        break;
+                    case "s":
+                    case "S":
+                        player[1]--;
+                        break;
+                    case "e":
+                    case "E":
+                        player[0]++;
+                        break;
+                    case "w":
+                    case "W":
+                        player[0]--;
+                        break;
+                    case "q":
+                    case "Q":
+                        start = 0;
+                        break;
+                    case "nol":
+                        input = 1;
+                        Console.WriteLine("There is a wall in the way!!");
+                        break;
+                    default:
+                        input = 1;
+                        Console.WriteLine("Invalid Input");
+                        break;
                 }
-            }
-            return data;
+            } while (input == 1);
         }
-
-
         static void Main()
         {
             string temp;
@@ -192,10 +132,19 @@ namespace project_andromeda
                 switch (temp)
                 {
                     case "1":
-                        NewGame();
+                        int[] player = { 2, 2 };
+                        Game(player);
                         break;
                     case "2":
-                        Game();
+                        try
+                        {
+                            Game(Load());
+                        }
+                        catch (System.IO.FileNotFoundException)
+                        {
+                            Console.WriteLine("Error, Save file not found.");
+                        }
+                        Console.ReadLine();
                         break;
                     case "3":
                         start = 0;
@@ -208,5 +157,33 @@ namespace project_andromeda
                 }
             } while (start == 1);
         }
+         // This makes a list with all of the items in it
+        //public static List<string> GetAllData(string[] dataString, string dataType)
+        //{
+        //    List<string> allData = new List<string>();
+        //    foreach (string line in dataString)
+        //    {        
+        //        int delimiter = line.IndexOf('=');
+        //        allData.Add(line.Substring(delimiter + 1));
+        //    }
+        //    return allData;
+        //}
+
+        //// This returns a single item once you know it exists
+        //public static string GetData(string[] dataString, string dataType, string name)
+        //{
+        //    string data = "\0";
+        //    foreach (string line in dataString)
+        //    {
+        //        // Once a line with the item= key has been found and it has the correct name,
+        //        // extract the data without the key
+        //        if (line.Contains(dataType) && line.Contains(name))
+        //        {
+        //            int delimiterIndex = line.IndexOf(Room.delimiter);
+        //            data = line.Substring(delimiterIndex + 1);
+        //        }
+        //    }
+        //    return data;
+        //}
     }
 }
