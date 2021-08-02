@@ -6,21 +6,7 @@ using System.Threading;
 namespace project_andromeda
 {
     class andromeda
-    {
-        //Create a new save file with default player variables and then start the game
-        static void NewGame()
-        {
-            // This just checks if it is a debug build or a release and changes the pathing
-#if DEBUG
-            StreamWriter sw = new StreamWriter(@"..\..\..\Save.txt");
-#else
-            StreamWriter sw = new StreamWriter(@".\save\Save.txt");
-#endif
-            sw.WriteLine("player[0] =2;\nplayer[1] =2;");
-            sw.Close();
-            Game();
-        }
-       
+    {  
         //Saves the players position
         static void Save(ref int[] player)
         {
@@ -60,6 +46,18 @@ namespace project_andromeda
             }
             sr.Close();
             return player;
+        }
+        static void GameNEW(int[] player)
+        {
+            int start = 1;
+            do
+            {
+                DisplayGameUI();
+                //Takes a user input to move player position
+                UserInputGame();
+            } while (start == 1);
+            //Saves the player's position when player leaves the game loop
+            Save(ref player);
         }
         static void Game(int[] player)
         {
@@ -144,7 +142,8 @@ namespace project_andromeda
                 switch (temp)
                 {
                     case "1":
-                        NewGame();
+                        int[] player = { 2, 2 };
+                        Game(player);
                         break;
                     case "2":
                         try
