@@ -47,7 +47,7 @@ namespace project_andromeda
             sr.Close();
             return player;
         }
-        static void GameNEW(int[] player)
+        static void Game(int[] player)
         {
             int start = 1;
             do
@@ -61,7 +61,7 @@ namespace project_andromeda
                 }
                 DisplayGameUI(ref player);
                 //Takes a user input to move player position
-                GameUserInput(ref player);
+                GameUserInput(ref player, ref start);
             } while (start == 1);
             //Saves the player's position when player leaves the game loop
             Save(ref player);
@@ -77,7 +77,7 @@ namespace project_andromeda
             Console.WriteLine("Or input [Q] to quit.\n\n");
         }
         //Takes a user input to decide what to do next.
-        static void GameUserInput(ref int[] player)
+        static void GameUserInput(ref int[] player, ref int start)
         {
             int input;
             do
@@ -107,6 +107,7 @@ namespace project_andromeda
                         break;
                     case "q":
                     case "Q":
+                        start = 0;
                         break;
                     case "l":
                     case "L":
@@ -122,77 +123,6 @@ namespace project_andromeda
                         break;
                 }
             } while (input == 1);
-        }
-        static void Game(int[] player)
-        {
-            string temp, wall;
-            int input;
-            Random rand = new Random();
-            // Read room data into currentRoom
-            Room.ReadRoomFile(player);
-            //Takes a user input to move player position
-            
-            do
-            {
-                Console.Clear();
-                //Read room data
-                Room.ReadRoomFile(player);
-
-                // Check if player is in room 49.room and end game.
-                if ((player[0] == 4) && (player[1] == 9))
-                {
-                    Console.WriteLine("Congratulations you won!");
-                    //Player.Win();
-                }
-                Console.WriteLine($"Your position is x {player[0]}, y {player[1]}.");
-                Console.WriteLine("Input a direction to travel N/E/S/W.\n");
-                Room.LookRoom();
-                Console.WriteLine("Or input [Q] to quit.\n\n");
-                do
-                {
-                    temp = Console.ReadLine();
-                    //Checks if there is a wall in the direction the player wants to move
-                    wall = Room.CanMove(temp);
-                    temp = wall;
-                    input = 0;
-                    switch (temp)
-                    {
-                        case "n":
-                        case "N":
-                            player[1]++;
-                            break;
-                        case "s":
-                        case "S":
-                            player[1]--;
-                            break;
-                        case "e":
-                        case "E":
-                            player[0]++;
-                            break;
-                        case "w":
-                        case "W":
-                            player[0]--;
-                            break;
-                        case "q":
-                        case "Q":
-                            break;
-                        case "l":
-                        case "L":
-                            Room.LookRoom();
-                            break;
-                        case "nol":
-                            input = 1;
-                            Console.WriteLine("There is a wall in the way!!");
-                            break;
-                        default:
-                            input = 1;
-                            Console.WriteLine("Invalid Input");
-                            break;
-                    }
-                } while (input == 1);                
-            } while ((temp != "q")&&(temp != "Q"));
-            //Saves the player's position when player leaves the game loop
-            Save(ref player);
         }
         static void Main()
         {
