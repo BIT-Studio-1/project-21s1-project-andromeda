@@ -52,12 +52,22 @@ namespace project_andromeda
             int start = 1;
             do
             {
-                DisplayGameUI();
+                DisplayGameUI(ref player);
                 //Takes a user input to move player position
                 UserInputGame();
             } while (start == 1);
             //Saves the player's position when player leaves the game loop
             Save(ref player);
+        }
+        static void DisplayGameUI(ref int[] player)
+        {
+            Console.Clear();
+            //Read room data
+            Room.ReadRoomFile(player);
+            Console.WriteLine($"Your position is x {player[0]}, y {player[1]}.");
+            Console.WriteLine("Input a direction to travel N/E/S/W.\n");
+            Room.LookRoom();
+            Console.WriteLine("Or input [Q] to quit.\n\n");
         }
         static void Game(int[] player)
         {
