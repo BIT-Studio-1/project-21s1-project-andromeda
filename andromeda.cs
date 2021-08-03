@@ -157,6 +157,13 @@ namespace project_andromeda
                 }
             } while (start == 1);
         }
+
+        static private void drawMiniMap()
+        {
+            string path = @"..\..\room\map.txt";
+            FileStream file = File.Open(path);
+
+        }
          // This makes a list with all of the items in it
         //public static List<string> GetAllData(string[] dataString, string dataType)
         //{
