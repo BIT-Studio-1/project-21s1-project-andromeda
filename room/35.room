@@ -5,7 +5,9 @@
 
 ; Insert the text to be printed to the screen here. The # tells the method when to stop reading
 text=
-ROOM "35"
+This room is diffrent from the rest , its very bright and has two flashing doors
+to the west the door has a blinking green light in a repetitive pattern
+to the east the door has a red light and a corpse next to it i might not be safe to enter
 # 
 
 

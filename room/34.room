@@ -5,8 +5,9 @@
 
 ; Insert the text to be printed to the screen here. The # tells the method when to stop reading
 text=
-ROOM "34"
-Your are on the right track keep going
+to the west there is a door but is locked and cant by opened
+to the east there is only a wall
+to the north there is and open door with air flowing through might be worth a try
 # 
 
 
