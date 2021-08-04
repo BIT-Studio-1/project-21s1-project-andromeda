@@ -187,7 +187,7 @@ namespace project_andromeda
             do
             {
                 Console.Clear();
-                Console.WriteLine("Maze Advanture Game");
+                Console.WriteLine("ANDROMEDA MAZE");
                 Console.WriteLine("========================");
                 Console.WriteLine("1. Start a new game");
                 Console.WriteLine("2. Load the previous game");
