@@ -5,7 +5,9 @@
 
 ; Insert the text to be printed to the screen here. The # tells the method when to stop reading
 text=
-ROOM "25"
+to the west and the north there are walls and no exit except,
+to the south where there is a door you can see a green light almost not visible and seems dangerous 
+but since there is no other way out you have to go in.
 # 
 
 
