@@ -127,7 +127,7 @@ namespace project_andromeda
             do
             {
                 Console.Clear();
-                Console.WriteLine("ANDROMEDA\nMain Menu\n\n1. New Game\n2. Load Game\n3. Exit")
+                Console.WriteLine("ANDROMEDA\nMain Menu\n\n1. New Game\n2. Load Game\n3. Exit");
                 temp = Console.ReadLine();
                 switch (temp)
                 {
