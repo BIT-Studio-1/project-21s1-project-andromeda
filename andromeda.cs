@@ -120,11 +120,11 @@ namespace project_andromeda
                 }
             } while (input == 1);
         }
-        private int ReadLength(ref string x)
+        static int ReadLength(string x)
         {
             int count = 0;
             bool complete = false;
-            StreamReader sr = new StreamReader(@"\data\textdata.txt");
+            StreamReader sr = new StreamReader(@"..\..\..\data\textdata.txt");
             do
             {
                 string line = sr.ReadLine();
@@ -132,7 +132,7 @@ namespace project_andromeda
                 {
                     while (line != "<stop>")
                     {
-
+                        line = sr.ReadLine();
                         count++;
                     }
                     complete = true;
@@ -141,11 +141,11 @@ namespace project_andromeda
             sr.Close();
             return count;
         }
-        private void ReadData(string x)
+        static string[] ReadData(string x)
         {
-            string[] textBody = new string[ReadLength(ref x)];
+            string[] textBody = new string[ReadLength(x)-1];
             bool complete = false;
-            StreamReader sr = new StreamReader(@"\data\textdata.txt");
+            StreamReader sr = new StreamReader(@"..\..\..\data\textdata.txt");
             do
             {
                 string line = sr.ReadLine();
@@ -159,6 +159,19 @@ namespace project_andromeda
                 }
             } while (complete == false);
             sr.Close();
+            return textBody;
+        }
+        static void MainDisplay(string x)
+        {
+            Console.Clear();
+            if (x != "null")
+            {
+                string[] textBody = ReadData(x);
+                for (int i = 0; i < textBody.Length; i++)
+                {
+                    Console.WriteLine(textBody[i]);
+                }
+            }
         }
         static void Main()
         {
@@ -166,8 +179,8 @@ namespace project_andromeda
             int start = 1;
             do
             {
-                Console.Clear();    
-                Console.WriteLine("ANDROMEDA\nMain Menu\n\n1. New Game\n2. Load Game\n3. Exit");
+                MainDisplay("<MainMenu>");
+                //Console.WriteLine("ANDROMEDA\nMain Menu\n\n1. New Game\n2. Load Game\n3. Exit");
                 temp = Console.ReadLine();
                 switch (temp)
                 {
