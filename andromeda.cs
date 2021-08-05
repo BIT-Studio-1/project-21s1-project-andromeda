@@ -120,13 +120,32 @@ namespace project_andromeda
                 }
             } while (input == 1);
         }
+        private void ReadData(string x)
+        {
+            string[] textBody = new string[ReadLength(ref x)];
+            bool complete = false;
+            StreamReader sr = new StreamReader(@"\data\textdata.txt");
+            do
+            {
+                string line = sr.ReadLine();
+                if (line == x)
+                {
+                    for(int i = 0; i < textBody.length; i++)
+                    {
+                        textBody[i] = sr.ReadLine();
+                    }
+                    complete = true;
+                }
+            } while (complete == false);
+            sr.Close();
+        }
         static void Main()
         {
             string temp;
             int start = 1;
             do
             {
-                Console.Clear();
+                Console.Clear();    
                 Console.WriteLine("ANDROMEDA\nMain Menu\n\n1. New Game\n2. Load Game\n3. Exit");
                 temp = Console.ReadLine();
                 switch (temp)
