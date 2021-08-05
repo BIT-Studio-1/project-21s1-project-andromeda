@@ -9,8 +9,13 @@ namespace project_andromeda
     {
         static readonly string PADDING = "\t";
         static readonly string PLAYERICON = "()";
-        static String[] minimap;
-        static int miniMapSize;
+        const int XSTEP = 3;
+        const int YSTEP = 2;
+        const int ALIGN = 1;
+
+        static String[] miniMap;
+        static int miniMapX;
+        static int miniMapY;
 
 
         //Saves the players position
@@ -62,6 +67,7 @@ namespace project_andromeda
                 // Check if player is in room 49.room and end game.
                 if ((player[0] == 4) && (player[1] == 9))
                 {
+                    DisplayGameUI(ref player);
                     Console.WriteLine("Congratulations you won!");
                     //Player.Win();
                     Console.ReadLine();
@@ -169,7 +175,8 @@ namespace project_andromeda
         // This loads the minimap text file into a string array, if it doesn't exist it does nothing
         static private void readMiniMapFromFile()
         {
-            miniMapSize = 0;
+            miniMapX = 0;
+            miniMapY = 0;
 #if DEBUG
             string file = @"..\..\..\room\map.txt";
 #else
@@ -180,54 +187,96 @@ namespace project_andromeda
                 // Count how many lines are in the file
                 foreach (string line in System.IO.File.ReadAllLines(file))
                 {
-                    miniMapSize++;
+                    miniMapY++;
                 }
 
                 // Create the array the right size for the file
-                minimap = new string[miniMapSize];
+                miniMap = new string[miniMapY];
 
                 // Load lines into array
                 int lineCounter = 0;
                 foreach (string line in System.IO.File.ReadAllLines(file))
                 {
-                    minimap[lineCounter] = line;
+                    miniMap[lineCounter] = line;
                     lineCounter++;
                 }
+
+                // Load map X from array
+                miniMapX = miniMap[0].Length;
             }
         }
 
         static private void drawMiniMap(int[] playerpos)
         {
-            // Line up with minimap
-            int tempPos = playerpos[1];
-            tempPos--;
+            int posX = 0;
+            int posY = 0;
+
+            int[] pos = new int[] { posX, posY };
+
+            pos = convertToMapCoordinate(playerpos);
+
+            //// Line up with minimap
+            //pos[] = playerpos[1];
 
             // Check if the minimap has been loaded
-            if (miniMapSize != 0)
+            if (miniMapY != 0)
             {
-                for (int i = 0; i < miniMapSize; i++)
+
+                for (int i = 0; i < miniMapY; i++)
                 {
                     // This still needs some serious work
-                    if (i == Math.Abs(tempPos - 20))
+                    if (i == pos[1])
                     {
-                        
-                        Console.Write("-->");
-                        Console.WriteLine(minimap[i]);
+                        Console.Write(PADDING);
+                        Console.Write(miniMap[i]);
+
+                        // Draw player character on minimap
+                        Console.CursorLeft = pos[0]+6;
+                        Console.Write(PLAYERICON);
+
+                        // Newline
+                        Console.WriteLine();
                     }
                     else
                     {
                         Console.Write(PADDING);
-                        Console.WriteLine(minimap[i]);
-                    }
-                    
-
-                    
+                        Console.WriteLine(miniMap[i]);
+                    } 
                 }
+            }
+
+            // Convert playerpos to mapPos
+            static int[] convertToMapCoordinate(int[] playerpos)
+            {
+                int[] mapPos;
+                int mapPosX = 0;
+                int mapPosY = 0;
+
+                // Convert X pos
+                mapPosX = playerpos[0];
+                // Step over first wall
+                mapPosX += ALIGN;
+                // Move over to correct position
+                mapPosX *= XSTEP;
 
 
+                
+
+                // Convert Y pos
+                mapPosY = playerpos[1];
+                mapPosY += ALIGN;
+                mapPosY *= YSTEP;
+                mapPosY = Math.Abs(mapPosY - miniMapY);
+
+
+
+                mapPos = new int[] { mapPosX, mapPosY };
+
+                return mapPos;
             }
 
         }
+
          // This makes a list with all of the items in it
         //public static List<string> GetAllData(string[] dataString, string dataType)
         //{
