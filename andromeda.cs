@@ -127,7 +127,11 @@ namespace project_andromeda
             do
             {
                 Console.Clear();
-                Console.WriteLine("ANDROMEDA\nMain Menu\n\n1. New Game\n2. Load Game\n3. Exit");
+                Console.WriteLine("ANDROMEDA MAZE");
+                Console.WriteLine("========================");
+                Console.WriteLine("1. Start a new game");
+                Console.WriteLine("2. Load the previous game");
+                Console.WriteLine("3. Exit the game");
                 temp = Console.ReadLine();
                 switch (temp)
                 {
