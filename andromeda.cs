@@ -6,7 +6,13 @@ using System.Threading;
 namespace project_andromeda
 {
     class andromeda
-    {  
+    {
+        static readonly string PADDING = "\t";
+        static readonly string PLAYERICON = "()";
+        static String[] minimap;
+        static int miniMapSize;
+
+
         //Saves the players position
         static void Save(ref int[] player)
         {
@@ -49,6 +55,7 @@ namespace project_andromeda
         }
         static void Game(int[] player)
         {
+            readMiniMapFromFile();
             int start = 1;
             do
             {
@@ -75,6 +82,7 @@ namespace project_andromeda
             Console.WriteLine("Input a direction to travel N/E/S/W.\n");
             Room.LookRoom();
             Console.WriteLine("Or input [Q] to quit.\n\n");
+            drawMiniMap(player);
         }
         //Takes a user input to decide what to do next.
         static void GameUserInput(ref int[] player, ref int start)
@@ -158,10 +166,66 @@ namespace project_andromeda
             } while (start == 1);
         }
 
-        static private void drawMiniMap()
+        // This loads the minimap text file into a string array, if it doesn't exist it does nothing
+        static private void readMiniMapFromFile()
         {
-            string path = @"..\..\room\map.txt";
-            FileStream file = File.Open(path);
+            miniMapSize = 0;
+#if DEBUG
+            string file = @"..\..\..\room\map.txt";
+#else
+            string file = @"..\..\..\room\map.txt";
+#endif
+            if (System.IO.File.Exists(file))
+            {
+                // Count how many lines are in the file
+                foreach (string line in System.IO.File.ReadAllLines(file))
+                {
+                    miniMapSize++;
+                }
+
+                // Create the array the right size for the file
+                minimap = new string[miniMapSize];
+
+                // Load lines into array
+                int lineCounter = 0;
+                foreach (string line in System.IO.File.ReadAllLines(file))
+                {
+                    minimap[lineCounter] = line;
+                    lineCounter++;
+                }
+            }
+        }
+
+        static private void drawMiniMap(int[] playerpos)
+        {
+            // Line up with minimap
+            int tempPos = playerpos[1];
+            tempPos--;
+
+            // Check if the minimap has been loaded
+            if (miniMapSize != 0)
+            {
+                for (int i = 0; i < miniMapSize; i++)
+                {
+                    // This still needs some serious work
+                    if (i == Math.Abs(tempPos - 20))
+                    {
+                        
+                        Console.Write("-->");
+                        Console.WriteLine(minimap[i]);
+                    }
+                    else
+                    {
+                        Console.Write(PADDING);
+                        Console.WriteLine(minimap[i]);
+                    }
+                    
+
+                    
+                }
+
+
+            }
 
         }
          // This makes a list with all of the items in it
