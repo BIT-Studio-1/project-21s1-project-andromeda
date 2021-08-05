@@ -120,6 +120,27 @@ namespace project_andromeda
                 }
             } while (input == 1);
         }
+        private int ReadLength(ref string x)
+        {
+            int count = 0;
+            bool complete = false;
+            StreamReader sr = new StreamReader(@"\data\textdata.txt");
+            do
+            {
+                string line = sr.ReadLine();
+                if (line == x)
+                {
+                    while (line != "<stop>")
+                    {
+
+                        count++;
+                    }
+                    complete = true;
+                }
+            } while (complete == false);
+            sr.Close();
+            return count;
+        }
         private void ReadData(string x)
         {
             string[] textBody = new string[ReadLength(ref x)];
@@ -130,7 +151,7 @@ namespace project_andromeda
                 string line = sr.ReadLine();
                 if (line == x)
                 {
-                    for(int i = 0; i < textBody.length; i++)
+                    for(int i = 0; i < textBody.Length; i++)
                     {
                         textBody[i] = sr.ReadLine();
                     }
