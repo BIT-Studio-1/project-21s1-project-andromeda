@@ -161,12 +161,21 @@ namespace project_andromeda
             sr.Close();
             return textBody;
         }
+        static void FormatMargin(ref string[]textBody)
+        {
+            Array.Resize(ref textBody, textBody.Length + 4);
+            for(int i = textBody.Length-2; i > 2; i--)
+            {
+                textBody[i] = textBody[i - 2];
+            }
+        }
         static void MainDisplay(string x)
         {
             Console.Clear();
             if (x != "null")
             {
                 string[] textBody = ReadData(x);
+                FormatMargin(ref textBody);
                 for (int i = 0; i < textBody.Length; i++)
                 {
                     Console.WriteLine(textBody[i]);
