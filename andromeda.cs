@@ -6,7 +6,17 @@ using System.Threading;
 namespace project_andromeda
 {
     class andromeda
-    {  
+    {
+        static readonly string PLAYERICON = "()";
+        const int XSTEP = 3;
+        const int YSTEP = 2;
+        const int ALIGN = 1;
+
+        static String[] originalMiniMapFromFile;
+        static int miniMapX;
+        static int miniMapY;
+
+
         //Saves the players position
         static void Save(ref int[] player)
         {
@@ -49,12 +59,14 @@ namespace project_andromeda
         }
         static void Game(int[] player)
         {
+            readMiniMapFromFile();
             int start = 1;
             do
             {
                 // Check if player is in room 49.room and end game.
                 if ((player[0] == 4) && (player[1] == 9))
                 {
+                    DisplayGameUI(ref player);
                     Console.WriteLine("Congratulations you won!");
                     //Player.Win();
                     Console.ReadLine();
@@ -75,6 +87,10 @@ namespace project_andromeda
             Console.WriteLine("Input a direction to travel N/E/S/W.\n");
             Room.LookRoom();
             Console.WriteLine("Or input [Q] to quit.\n\n");
+
+            //@DEBUG Draw the map to screen, this can safely be deleted
+            drawMiniMap(generateMiniMap(player, originalMiniMapFromFile));
+            
         }
         //Takes a user input to decide what to do next.
         static void GameUserInput(ref int[] player, ref int start)
@@ -157,6 +173,120 @@ namespace project_andromeda
                 }
             } while (start == 1);
         }
+
+        // @DEBUG this can safely be deleted
+        static void drawMiniMap(string[] map)
+        {
+            foreach (string line in map)
+            {
+                Console.WriteLine(line);
+            }
+        }
+
+
+        // This loads the minimap text file into a string array, if it doesn't exist it does nothing
+        static private void readMiniMapFromFile()
+        {
+            miniMapX = 0;
+            miniMapY = 0;
+#if DEBUG
+            string file = @"..\..\..\room\map.txt";
+#else
+            string file = @"..\..\..\room\map.txt";
+#endif
+            if (System.IO.File.Exists(file))
+            {
+                // Count how many lines are in the file
+                foreach (string line in System.IO.File.ReadAllLines(file))
+                {
+                    miniMapY++;
+                }
+
+                // Create the array the right size for the file
+                originalMiniMapFromFile = new string[miniMapY];
+
+                // Load lines into array
+                int lineCounter = 0;
+                foreach (string line in System.IO.File.ReadAllLines(file))
+                {
+                    originalMiniMapFromFile[lineCounter] = line;
+                    lineCounter++;
+                }
+
+                // Load map X from array
+                miniMapX = originalMiniMapFromFile[0].Length;
+            }
+        }
+
+        static private string[] generateMiniMap(int[] playerpos, string[] inputMap)
+        {
+            // The string array to return
+            string[] generatedMap = new string[miniMapY];
+
+            // Temporary character array for drawing player character
+            char[] lineWithPlayerCharacter;
+
+            // Positional variables required for drawing player character
+            int[] pos = convertToMapCoordinate(playerpos);
+
+            // Check if the minimap has been loaded
+            if (miniMapY != 0)
+            {
+                // Put each line in a separate array item
+                for (int i = 0; i < miniMapY; i++)
+                {
+                    // This discovers which line the player character is on
+                    if (i == pos[1])
+                    {
+                        // Extract line as character array to do character manipulation
+                        lineWithPlayerCharacter = inputMap[i].ToCharArray();
+                        lineWithPlayerCharacter[pos[0]] = PLAYERICON[0];
+                        lineWithPlayerCharacter[pos[0]+1] = PLAYERICON[1];
+
+                        // Convert array back to string and put it in the string array
+                        generatedMap[i] = new string(lineWithPlayerCharacter);
+                        
+                    }
+                    // Else copy the lines to the array
+                    else
+                    {
+                        generatedMap[i] = inputMap[i];
+                    } 
+                }
+
+            }
+            
+            return generatedMap;
+        }
+            // Convert playerpos to mapPos
+            static int[] convertToMapCoordinate(int[] playerpos)
+            {
+                int[] mapPos;
+                int mapPosX = 0;
+                int mapPosY = 0;
+
+                // Convert X pos
+                mapPosX = playerpos[0];
+                // Move over to correct position
+                mapPosX *= XSTEP;
+                // Step over first wall
+                mapPosX += ALIGN;
+
+                // Convert Y pos
+                mapPosY = playerpos[1];
+                // Step over first wall
+                mapPosY += ALIGN;
+                // Move over to correct position
+                mapPosY *= YSTEP;
+                // Reverse coordinate space
+                mapPosY = Math.Abs(mapPosY - miniMapY);
+
+                // Package it up into an array
+                mapPos = new int[] { mapPosX, mapPosY };
+
+                return mapPos;
+            }
+
          // This makes a list with all of the items in it
         //public static List<string> GetAllData(string[] dataString, string dataType)
         //{
