@@ -163,10 +163,15 @@ namespace project_andromeda
         }
         static void FormatMargin(ref string[]textBody)
         {
-            Array.Resize(ref textBody, textBody.Length + 4);
-            for(int i = textBody.Length-2; i > 2; i--)
+            const int SIZE = 2;
+            Array.Resize(ref textBody, textBody.Length + (SIZE * 2));
+            for(int i = textBody.Length-SIZE; i >= SIZE; i--)
             {
-                textBody[i] = textBody[i - 2];
+                textBody[i] = textBody[i - SIZE];
+            }
+            for (int i = 0; i < SIZE; i++)
+            {
+                textBody[i] = "";
             }
         }
         static void MainDisplay(string x)
