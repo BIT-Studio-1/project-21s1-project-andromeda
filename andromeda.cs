@@ -174,6 +174,18 @@ namespace project_andromeda
                 textBody[i] = "";
             }
         }
+        static int GetArrayWidth(string[] x)
+        {
+            int max = 0;
+            for (int i = 0; i < x.Length; i++)
+            {
+                if (x[i].Length > max)
+                {
+                    max = x[i].Length;
+                }
+            }
+            return max;
+        }
         static void MainDisplay(string x)
         {
             Console.Clear();
