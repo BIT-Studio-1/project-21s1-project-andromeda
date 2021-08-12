@@ -161,18 +161,33 @@ namespace project_andromeda
             sr.Close();
             return textBody;
         }
-        static void FormatMargin(ref string[]textBody)
+        static void FormatMargin(ref string[]textBody, int MARGINSIZE)
         {
-            const int SIZE = 2;
-            Array.Resize(ref textBody, textBody.Length + (SIZE * 2));
-            for(int i = textBody.Length-SIZE; i >= SIZE; i--)
+            Array.Resize(ref textBody, textBody.Length + (MARGINSIZE * 2));
+            for(int i = textBody.Length-MARGINSIZE; i >= MARGINSIZE; i--)
             {
-                textBody[i] = textBody[i - SIZE];
+                textBody[i] = textBody[i - MARGINSIZE];
             }
-            for (int i = 0; i < SIZE; i++)
+            for (int i = 0; i < MARGINSIZE; i++)
             {
                 textBody[i] = "";
+                textBody[i + textBody.Length - MARGINSIZE] = "";
             }
+        }
+        static void FormatBorder(ref string[] textBody, int MARGINSIZE)
+        {
+            string horizon = "";
+            int max = GetArrayWidth(textBody);
+            for (int i = 0; i < max + MARGINSIZE; i++)
+            {
+                horizon += "_";
+            }
+            textBody[0] = " " + horizon;
+            for(int i = 1; i < textBody.Length; i++)
+            {
+                textBody[i] = "| " + textBody[i].PadRight(max) + " |";
+            }
+            textBody[textBody.Length -1] = "|" + horizon + "|";
         }
         static int GetArrayWidth(string[] x)
         {
@@ -188,11 +203,13 @@ namespace project_andromeda
         }
         static void MainDisplay(string x)
         {
+            const int MARGINSIZE = 2;
             Console.Clear();
             if (x != "null")
             {
                 string[] textBody = ReadData(x);
-                FormatMargin(ref textBody);
+                FormatMargin(ref textBody, MARGINSIZE);
+                FormatBorder(ref textBody, MARGINSIZE);
                 for (int i = 0; i < textBody.Length; i++)
                 {
                     Console.WriteLine(textBody[i]);
