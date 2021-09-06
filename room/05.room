@@ -5,6 +5,10 @@
 
 ; Insert the text to be printed to the screen here. The # tells the method when to stop reading
 text=
+The player decided to enter the room
+as soon as the player entered the room the door shut closed
+and wont door, there isnt a choise other then to walk the door 
+east of the player
 # 
 
 

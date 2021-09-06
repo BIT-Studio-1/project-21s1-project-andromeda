@@ -5,6 +5,9 @@
 
 ; Insert the text to be printed to the screen here. The # tells the method when to stop reading
 text=
+the player enters the room, the player is suprised as to what the room looks like
+just like an old plain room with stone walls all around
+with a single door north of the player
 # 
 
 

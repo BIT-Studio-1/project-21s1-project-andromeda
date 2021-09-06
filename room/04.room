@@ -5,6 +5,9 @@
 
 ; Insert the text to be printed to the screen here. The # tells the method when to stop reading
 text=
+the player enters the room and its not what he expected,
+the room is bright and the payer quickly relizes that there is just a single door,
+what will the player decides will he go to the next room or go back.
 # 
 
 
